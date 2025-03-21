@@ -1,25 +1,26 @@
 using System;
 using Godot;
+using LumiVerseFramework.Async;
 using LumiVerseFramework.Base;
 using LumiVerseFramework.Common;
+using O342025.Scripts.Scene0;
 
 namespace O342025.Scripts.Managers;
 
 public partial class AudioManager : Singleton<AudioManager>
 {
     private PackedScene _audioPlayerScene;
-    private AudioStreamPlayer _bgmPlayer;
-    private AudioStreamPlayer _sfxPlayer;
-
+    private AudioNode _audioNode;
+    
+    // TODO: 音频渐入渐出
+    
     public override void _Ready()
     {
         base._Ready();
         _audioPlayerScene =
             GD.Load<PackedScene>("res://Scenes/Audio/AudioNode.tscn");
-        Node n = _audioPlayerScene.Instantiate();
-        GetTree().Root.AddChild(n);
-        _bgmPlayer = n.GetNode<AudioStreamPlayer>("AudioStreamPlayer_Bgm");
-        _sfxPlayer = n.GetNode<AudioStreamPlayer>("AudioStreamPlayer_Sfx");
+        _audioNode = _audioPlayerScene.Instantiate() as AudioNode;
+        GetTree().Root.CallDeferred("add_child", _audioNode);
     }
 
     /// <summary>
@@ -33,13 +34,13 @@ public partial class AudioManager : Singleton<AudioManager>
         switch (type)
         {
             case AudioPlayerType.Bgm:
-                if (_bgmPlayer.Playing) _bgmPlayer.Stop();
-                _bgmPlayer.Stream = audioStream;
-                _bgmPlayer.Play();
+                if (_audioNode.BgmPlayer.Playing) _audioNode.BgmPlayer.Stop();
+                _audioNode.BgmPlayer.Stream = audioStream;
+                _audioNode.BgmPlayer.Play();
                 break;
             case AudioPlayerType.Sfx:
-                _sfxPlayer.Stream = audioStream;
-                _sfxPlayer.Play();
+                _audioNode.SfxPlayer.Stream = audioStream;
+                _audioNode.SfxPlayer.Play();
                 break;
             default:
                 YumihoshiDebug.Error<AudioManager>("播放音频",

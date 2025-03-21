@@ -22,6 +22,7 @@ EventCenterManager="*res://addons/LumiVerseFramework/Managers/EventCenterManager
 UiManager="*res://Scripts/Managers/UiManager.cs"
 SceneManager="*res://Scripts/Managers/SceneManager.cs"
 AudioManager="*res://Scripts/Managers/AudioManager.cs"
+GameManager="*res://Scripts/Managers/GameManager.cs"
 
 [display]
 
@@ -53,4 +54,4 @@ folder_colors={
 
 [rendering]
 
-environment/defaults/default_clear_color=Color(0, 0, 0, 1)
+environment/defaults/default_clear_color=Color(0.098374, 0.318987, 0.546525, 1)

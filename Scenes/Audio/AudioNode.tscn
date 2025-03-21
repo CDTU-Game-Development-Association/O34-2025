@@ -1,6 +1,11 @@
-[gd_scene format=3 uid="uid://ch7y5lu1ars1v"]
+[gd_scene load_steps=2 format=3 uid="uid://ch7y5lu1ars1v"]
 
-[node name="AudioNode" type="Node"]
+[ext_resource type="Script" uid="uid://ccw57fjo11ew0" path="res://Scripts/Scene0/AudioNode.cs" id="1_jgo1t"]
+
+[node name="AudioNode" type="Node" node_paths=PackedStringArray("BgmPlayer", "SfxPlayer")]
+script = ExtResource("1_jgo1t")
+BgmPlayer = NodePath("AudioStreamPlayer_Bgm")
+SfxPlayer = NodePath("AudioStreamPlayer_Sfx")
 
 [node name="AudioStreamPlayer_Bgm" type="AudioStreamPlayer" parent="."]
 bus = &"Bgm"
