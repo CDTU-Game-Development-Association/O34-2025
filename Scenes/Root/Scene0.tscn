@@ -15,7 +15,7 @@ ease = 2
 
 [node name="Scene0" type="Node"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D_Ground" type="Sprite2D" parent="."]
 self_modulate = Color(3.60981e-07, 0.514039, 0.122857, 1)
 position = Vector2(0, 511.5)
 scale = Vector2(2468.5, 307)
@@ -35,4 +35,3 @@ tween_resource = SubResource("Resource_4w4kc")
 metadata/_custom_type_script = "uid://bhxpxbxq12cc5"
 
 [node name="CanvasLayer_ScreenMask" parent="." instance=ExtResource("5_v2g35")]
-visible = false

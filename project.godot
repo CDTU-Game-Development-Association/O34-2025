@@ -20,6 +20,7 @@ config/icon="uid://ceih87lbiabnl"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 EventCenterManager="*res://addons/LumiVerseFramework/Managers/EventCenterManager.cs"
 UiManager="*res://Scripts/Managers/UiManager.cs"
+SceneManager="*res://Scripts/Managers/SceneManager.cs"
 
 [display]
 

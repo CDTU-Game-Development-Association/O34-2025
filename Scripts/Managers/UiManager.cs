@@ -1,5 +1,6 @@
 using Godot;
 using LumiVerseFramework.Base;
+using LumiVerseFramework.Common;
 using O342025.Scripts.UI;
 
 namespace O342025.Scripts.Managers;
@@ -35,6 +36,8 @@ public partial class UiManager : Singleton<UiManager>
     /// </summary>
     private void CheckFullscreenMaskNode()
     {
+        YumihoshiDebug.Print<UiManager>("检查全屏遮罩节点",
+            "组内个数:" + GetTree().GetNodeCountInGroup("FullScreenMask"));
         if (GetTree().GetNodeCountInGroup("FullScreenMask") == 0)
         {
             FullscreenMaskNode =

@@ -2,7 +2,7 @@ using Godot;
 
 namespace O342025.Scripts.UI;
 
-public partial class FullscreenMask : Node
+public partial class FullscreenMask : CanvasLayer
 {
     [Signal]
     public delegate void FadeInCompletedEventHandler();
