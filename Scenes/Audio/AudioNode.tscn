@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://ch7y5lu1ars1v"]
+
+[node name="AudioNode" type="Node"]
+
+[node name="AudioStreamPlayer_Bgm" type="AudioStreamPlayer" parent="."]
+bus = &"Bgm"
+
+[node name="AudioStreamPlayer_Sfx" type="AudioStreamPlayer" parent="."]
+max_polyphony = 3
+bus = &"Sfx"

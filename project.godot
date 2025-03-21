@@ -21,6 +21,7 @@ PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_came
 EventCenterManager="*res://addons/LumiVerseFramework/Managers/EventCenterManager.cs"
 UiManager="*res://Scripts/Managers/UiManager.cs"
 SceneManager="*res://Scripts/Managers/SceneManager.cs"
+AudioManager="*res://Scripts/Managers/AudioManager.cs"
 
 [display]
 
@@ -49,3 +50,7 @@ folder_colors={
 "res://Scenes/": "purple",
 "res://Scripts/": "teal"
 }
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
