@@ -10,13 +10,16 @@ config_version=5
 
 [application]
 
-config/name="O34-2025"
+config/name="Shape Drift"
+run/main_scene="uid://jmqodspbeuxw"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 config/icon="uid://ceih87lbiabnl"
 
 [autoload]
 
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
+EventCenterManager="*res://addons/LumiVerseFramework/Managers/EventCenterManager.cs"
+UiManager="*res://Scripts/Managers/UiManager.cs"
 
 [display]
 
@@ -27,6 +30,11 @@ window/stretch/mode="viewport"
 [dotnet]
 
 project/assembly_name="O34-2025"
+
+[editor]
+
+naming/scene_name_casing=1
+naming/script_name_casing=1
 
 [editor_plugins]
 
