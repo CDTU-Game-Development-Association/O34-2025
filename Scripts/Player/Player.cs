@@ -1,60 +1,9 @@
 using Godot;
+using O342025.Scripts.Base;
 
 namespace O342025.Scripts.Player;
 
-public partial class Player : CharacterBody2D
+public partial class Player : BasicPlayer
 {
-    [ExportGroup("玩家属性配置")] [Export] public bool AllowMove;
-    [Export] private float speed = 200f;
-    [Export] private float jumpSpeed = -400f;
-    [Export] private float gravity = 980f;
-    private float _doubleGravity;
-    private bool _jumpPressed;
-
-    private float _input;
-
-    public override void _Ready()
-    {
-        base._Ready();
-        _doubleGravity = gravity * 2;
-    }
-
-    public override void _Process(double delta)
-    {
-        base._Process(delta);
-        _input = Input.GetAxis("MoveLeft", "MoveRight");
-        _jumpPressed = Input.IsActionJustPressed("Jump") || Input.IsActionPressed("Jump");
-    }
-
-    public override void _PhysicsProcess(double delta)
-    {
-        base._PhysicsProcess(delta);
-        // 应用重力
-        Vector2 v = Velocity;
-        if (!IsOnFloor())
-        {
-            if (v.Y <= 0) v.Y += gravity * (float)delta;
-            else v.Y += _doubleGravity * (float)delta;
-        }
-        else
-        {
-            if (_jumpPressed) v.Y = jumpSpeed;
-            else v.Y = 0;
-        }
-        
-        if (!AllowMove) return;
-        // 移动
-        v.X = _input * speed * (float)delta;
-        Velocity = v;
-        MoveAndSlide();
-    }
-
-    /// <summary>
-    /// 设置是否允许移动
-    /// </summary>
-    /// <param name="status"></param>
-    public void SetAllowMove(bool status)
-    {
-        AllowMove = status;
-    }
+    
 }

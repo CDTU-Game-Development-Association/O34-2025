@@ -241,6 +241,7 @@ _animationPlayer = NodePath("../AnimationPlayer")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1810, 0)
+process_callback = 0
 
 [node name="Sprite2D_Ground" type="Sprite2D" parent="."]
 modulate = Color(0.537011, 0.537011, 0.537011, 1)

@@ -58,7 +58,7 @@ public partial class FullscreenMask : CanvasLayer
         _animationTree.Set("parameters/conditions/FadeOut", true);
     }
 
-    private void EmitFadeInCompleted()
+    private async void EmitFadeInCompleted()
     {
         EmitSignal(SignalName.FadeInCompleted);
     }

@@ -41,8 +41,8 @@ tracks/2/path = NodePath("../Scene2Controller")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 6, 6.1, 7.3, 7.7, 8.2, 9.2, 12, 13, 13.5, 13.6, 14, 14.75, 15),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 6, 6.1, 7.3, 7.7, 8.2, 9.2, 9.96667, 12, 13, 13.5, 13.6, 14, 14.75, 15),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "values": [{
 "args": [],
 "method": &"PlayGuardSfx"
@@ -66,6 +66,9 @@ tracks/2/keys = {
 "method": &"PlayConfusedSfx"
 }, {
 "args": [],
+"method": &"PlayCatSfx"
+}, {
+"args": [],
 "method": &"PlayGuardSfx"
 }, {
 "args": [],
@@ -83,7 +86,7 @@ tracks/2/keys = {
 "args": [],
 "method": &"PlayAttackSfx"
 }, {
-"args": [],
+"args": ["res://Scenes/Root/Scene3.tscn"],
 "method": &"LoadNext"
 }]
 }
@@ -121,7 +124,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(14.5, 14.75, 15),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(765, 265), Vector2(765, -111), Vector2(408, 102)]
+"values": [Vector2(765, 265), Vector2(765, -111), Vector2(472, 71)]
 }
 
 [sub_resource type="Animation" id="Animation_ew3m7"]
@@ -198,9 +201,6 @@ position = Vector2(-704, 269)
 [node name="RigidBody2D_Guard" parent="Node2D_Guard" instance=ExtResource("1_4mrw7")]
 z_index = 2
 
-[node name="Sprite2D_Weapon" parent="Node2D_Guard/RigidBody2D_Guard/Sprite2D_Body" index="0"]
-position = Vector2(0.712, -0.616692)
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Node2D_Guard")
 libraries = {
@@ -208,6 +208,7 @@ libraries = {
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
+process_callback = 0
 
 [node name="Scene2Controller" type="Node2D" parent="." node_paths=PackedStringArray("_animationPlayer")]
 script = ExtResource("3_140x8")

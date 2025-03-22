@@ -68,7 +68,7 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_p5y3r"]
 resource_name = "Main"
-length = 12.0
+length = 10.0
 tracks/0/type = "animation"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -86,7 +86,7 @@ tracks/1/path = NodePath("Scene1Controller")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.5, 2, 2.5, 3, 10),
+"times": PackedFloat32Array(0, 1.5, 2, 2.5, 3, 9),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "values": [{
 "args": [],
@@ -115,7 +115,7 @@ tracks/2/path = NodePath("WorldCore:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(3.5, 12),
+"times": PackedFloat32Array(3.5, 10),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 6.28319]
@@ -169,6 +169,7 @@ _data = {
 [node name="Scene1" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+process_callback = 0
 
 [node name="WorldCore" type="Node2D" parent="."]
 rotation = 6.28319

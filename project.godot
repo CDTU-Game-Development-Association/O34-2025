@@ -78,6 +78,7 @@ Jump={
 
 2d_physics/layer_1="Default"
 2d_physics/layer_2="Player"
+2d_physics/layer_3="BlackEnemy"
 
 [physics]
 

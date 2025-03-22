@@ -1,10 +1,11 @@
 using Godot;
 using LumiVerseFramework.Managers;
+using O342025.Scripts.Base;
 using O342025.Scripts.Managers;
 
 namespace O342025.Scripts.Scene2;
 
-public partial class Scene2Controller : Node2D
+public partial class Scene2Controller : BaseSceneController
 {
     [Export] private AnimationPlayer _animationPlayer;
 
@@ -72,8 +73,9 @@ public partial class Scene2Controller : Node2D
             "res://Assets/Audios/Sfx/Attack.mp3");
     }
 
-    private void LoadNext()
+    private void PlayCatSfx()
     {
-        SceneManager.Instance.LoadScene("res://Scenes/Root/Scene3.tscn");
+        AudioManager.Instance.PlayAudio(AudioPlayerType.Sfx,
+            "res://Assets/Audios/Sfx/Cat.mp3");
     }
 }

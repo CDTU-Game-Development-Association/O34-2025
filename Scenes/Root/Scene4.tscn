@@ -1,16 +1,111 @@
-[gd_scene load_steps=16 format=3 uid="uid://cx66lg7ynekyl"]
+[gd_scene load_steps=21 format=3 uid="uid://cx66lg7ynekyl"]
 
 [ext_resource type="Script" uid="uid://dqc5kxlrs8qm7" path="res://Scripts/Scene4/Scene4Controller.cs" id="1_7ow8p"]
 [ext_resource type="Script" uid="uid://cd35x1kdwu5rv" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_i7t6i"]
+[ext_resource type="AudioStream" uid="uid://nv0fw8b15fof" path="res://Assets/Audios/Sfx/OpenDoor.mp3" id="2_lxvs7"]
 [ext_resource type="PackedScene" uid="uid://g2qic0eoa40i" path="res://Scenes/Characters/Father.tscn" id="3_04ctw"]
 [ext_resource type="Script" uid="uid://bhxpxbxq12cc5" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="3_nas5i"]
 [ext_resource type="PackedScene" uid="uid://5421cdw4u05n" path="res://Scenes/Characters/Player.tscn" id="3_vd0h8"]
 [ext_resource type="PackedScene" uid="uid://bmo1xcfy1sh2a" path="res://Scenes/Characters/Mother.tscn" id="4_bu8bv"]
 [ext_resource type="Script" uid="uid://b14xp05pw7b72" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_lxvs7"]
+[ext_resource type="Script" uid="uid://bmxw0lvfe3h74" path="res://Scripts/Entities/FatherHugArea.cs" id="6_nas5i"]
+
+[sub_resource type="Animation" id="Animation_nas5i"]
+resource_name = "Hug"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D_Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.86, 1, 1.2, 2.44, 2.52, 2.64, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-310, 165), Vector2(-621.535, 165), Vector2(-672.25, 100), Vector2(-744.7, 165), Vector2(-1193.89, 165), Vector2(-1222.87, 100), Vector2(-1266.34, 165), Vector2(-1759, 165)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RBody2D_Father:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-309, 300), Vector2(-1770, 300)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("StaticBody2D_Mother:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(310, 311), Vector2(-1543, 311)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RBody2D_Father/Sprite2D_Hand:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PhantomCamera2D:follow_offset")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -400), Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RBody2D_Father/AnimationPlayer:active")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Scene4Controller")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1.41, 4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [1, ExtResource("2_lxvs7")],
+"method": &"PlayAudio"
+}, {
+"args": ["res://Scenes/Root/Scene5.tscn"],
+"method": &"LoadNext"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_7ow8p"]
 resource_name = "Main"
-length = 10.0
+length = 5.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -93,9 +188,70 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0.8, 0.8)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RBody2D_Father:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-309, 300)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("StaticBody2D_Mother:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(310, 311)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CharacterBody2D_Player:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -118)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PhantomCamera2D:follow_offset")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -400)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("RBody2D_Father/AnimationPlayer:active")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6disc"]
 _data = {
+&"Hug": SubResource("Animation_nas5i"),
 &"Main": SubResource("Animation_7ow8p"),
 &"RESET": SubResource("Animation_6disc")
 }
@@ -106,6 +262,9 @@ duration = 1.0
 transition = 0
 ease = 2
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_i7t6i"]
+radius = 55.7853
+
 [sub_resource type="CanvasTexture" id="CanvasTexture_7ow8p"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vd0h8"]
@@ -113,6 +272,8 @@ ease = 2
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_04ctw"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bu8bv"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_nas5i"]
 
 [node name="Scene4" type="Node2D"]
 
@@ -137,7 +298,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 1
-position = Vector2(0, -496)
+position = Vector2(-310, -235)
 zoom = Vector2(0.8, 0.8)
 process_callback = 0
 
@@ -149,26 +310,38 @@ metadata/_custom_type_script = "uid://cd35x1kdwu5rv"
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(0, -496)
+position = Vector2(-310, -235)
 script = ExtResource("3_nas5i")
 follow_mode = 2
 follow_target = NodePath("../CharacterBody2D_Player")
 zoom = Vector2(0.8, 0.8)
 tween_resource = SubResource("Resource_24lsk")
 follow_offset = Vector2(0, -400)
+follow_damping = true
 metadata/_custom_type_script = "uid://bhxpxbxq12cc5"
 
 [node name="CharacterBody2D_Player" parent="." instance=ExtResource("3_vd0h8")]
-position = Vector2(0, -96)
+position = Vector2(0, -118)
 
-[node name="StaticBody2D_Father" parent="." instance=ExtResource("3_04ctw")]
+[node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("_animationPlayer")]
+position = Vector2(-320, 134)
+collision_mask = 2
+script = ExtResource("6_nas5i")
+_animationPlayer = NodePath("../AnimationPlayer_Main")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(24, 13)
+shape = SubResource("CircleShape2D_i7t6i")
+
+[node name="RBody2D_Father" parent="." instance=ExtResource("3_04ctw")]
 position = Vector2(-309, 300)
+collision_mask = 2
 
 [node name="StaticBody2D_Ground" type="StaticBody2D" parent="."]
 position = Vector2(0, 563)
 
 [node name="Sprite2D_Ground" type="Sprite2D" parent="StaticBody2D_Ground"]
-modulate = Color(0.984703, 0.695293, 0.602059, 1)
+modulate = Color(0.650128, 0.650128, 0.650128, 1)
 scale = Vector2(6276, 349.5)
 texture = SubResource("CanvasTexture_7ow8p")
 
@@ -189,3 +362,14 @@ shape = SubResource("WorldBoundaryShape2D_bu8bv")
 
 [node name="StaticBody2D_Mother" parent="." instance=ExtResource("4_bu8bv")]
 position = Vector2(310, 311)
+
+[node name="Sprite2D_House" type="Sprite2D" parent="."]
+modulate = Color(0.984314, 0.694118, 0.603922, 1)
+z_index = -1
+position = Vector2(0, 106)
+scale = Vector2(1851, 570)
+texture = SubResource("CanvasTexture_nas5i")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="OnBodyEntered"]
+
+[editable path="RBody2D_Father"]
