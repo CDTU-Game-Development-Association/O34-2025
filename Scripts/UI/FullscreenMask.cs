@@ -1,4 +1,6 @@
 using Godot;
+using LumiVerseFramework.Managers;
+using O342025.Scripts.Managers;
 
 namespace O342025.Scripts.UI;
 
@@ -25,6 +27,17 @@ public partial class FullscreenMask : CanvasLayer
         _animationTree = GetNode<AnimationTree>("FullScreenMask/AnimationTree");
         _animationTree.Set("parameters/conditions/FadeIn", false);
         _animationTree.Set("parameters/conditions/FadeOut", false);
+        // 初始化信号
+        FadeInStart += () =>
+        {
+            EventCenterManager.Instance.TriggerEvent<GameStartEvent>(
+                new GameStartEvent { Ready = false });
+        };
+        FadeOutCompleted += () =>
+        {
+            EventCenterManager.Instance.TriggerEvent<GameStartEvent>(
+                new GameStartEvent { Ready = true });
+        };
     }
 
     /// <summary>

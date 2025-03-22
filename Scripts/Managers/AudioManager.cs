@@ -9,7 +9,6 @@ namespace O342025.Scripts.Managers;
 
 public partial class AudioManager : Singleton<AudioManager>
 {
-    private PackedScene _audioPlayerScene;
     private AudioNode _audioNode;
     
     // TODO: 音频渐入渐出
@@ -17,10 +16,7 @@ public partial class AudioManager : Singleton<AudioManager>
     public override void _Ready()
     {
         base._Ready();
-        _audioPlayerScene =
-            GD.Load<PackedScene>("res://Scenes/Audio/AudioNode.tscn");
-        _audioNode = _audioPlayerScene.Instantiate() as AudioNode;
-        GetTree().Root.CallDeferred("add_child", _audioNode);
+        _audioNode = GetTree().GetFirstNodeInGroup("AudioNode") as AudioNode;
     }
 
     /// <summary>
@@ -41,6 +37,10 @@ public partial class AudioManager : Singleton<AudioManager>
             case AudioPlayerType.Sfx:
                 _audioNode.SfxPlayer.Stream = audioStream;
                 _audioNode.SfxPlayer.Play();
+                break;
+            case AudioPlayerType.Environment:
+                _audioNode.EnvironmentPlayer.Stream = audioStream;
+                _audioNode.EnvironmentPlayer.Play();
                 break;
             default:
                 YumihoshiDebug.Error<AudioManager>("播放音频",
@@ -65,10 +65,36 @@ public partial class AudioManager : Singleton<AudioManager>
         }
         PlayAudio(type, audioSample);
     }
+
+    public void StopAudio(AudioPlayerType type)
+    {
+        switch (type)
+        {
+            case AudioPlayerType.Bgm:
+                _audioNode.BgmPlayer.Stop();
+                break;
+            case AudioPlayerType.Sfx:
+                _audioNode.SfxPlayer.Stop();
+                break;
+            case AudioPlayerType.Environment:
+                _audioNode.EnvironmentPlayer.Stop();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(type), type, null);
+        }
+    }
+    
+    public void StopAllAudio()
+    {
+        _audioNode.BgmPlayer.Stop();
+        _audioNode.SfxPlayer.Stop();
+        _audioNode.EnvironmentPlayer.Stop();
+    }
 }
 
 public enum AudioPlayerType
 {
     Bgm,
     Sfx,
+    Environment
 }

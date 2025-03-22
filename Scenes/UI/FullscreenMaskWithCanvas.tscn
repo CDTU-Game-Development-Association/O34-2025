@@ -23,7 +23,7 @@ tracks/1/path = NodePath("..")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.02, 0.98),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -55,7 +55,7 @@ tracks/1/path = NodePath("..")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.02, 0.98),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -122,8 +122,10 @@ states/RESET/node = SubResource("AnimationNodeAnimation_jfr0s")
 states/RESET/position = Vector2(331.333, 63.3333)
 transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_u1edi"), "RESET", "FadeOut", SubResource("AnimationNodeStateMachineTransition_444ku"), "FadeOut", "FadeIn", SubResource("AnimationNodeStateMachineTransition_3wpev"), "FadeIn", "FadeOut", SubResource("AnimationNodeStateMachineTransition_drgy3")]
 
-[node name="CanvasLayer_ScreenMask" type="CanvasLayer" groups=["FullScreenMask"]]
+[node name="CanvasLayer_ScreenMask" type="CanvasLayer" node_paths=PackedStringArray("_animationTree") groups=["FullScreenMask"]]
+layer = 99
 script = ExtResource("1_gw3y0")
+_animationTree = NodePath("FullScreenMask/AnimationTree")
 
 [node name="FullScreenMask" type="ColorRect" parent="."]
 anchors_preset = 15

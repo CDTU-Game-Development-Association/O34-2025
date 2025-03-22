@@ -1,0 +1,224 @@
+[gd_scene load_steps=10 format=3 uid="uid://dyxjye4yulkxi"]
+
+[ext_resource type="PackedScene" uid="uid://ck128fmfo23bw" path="res://Scenes/Scene0/Npc/Guard.tscn" id="1_4mrw7"]
+[ext_resource type="Texture2D" uid="uid://dan7k5o0e7id2" path="res://Assets/Art/Sprites/Circle.png" id="1_11w0x"]
+[ext_resource type="Script" uid="uid://rislcfi1a2ls" path="res://Scripts/Scene2/Scene2Controller.cs" id="3_140x8"]
+[ext_resource type="Texture2D" uid="uid://6uelg275ued7" path="res://Assets/Art/Sprites/Triangle.png" id="4_ew3m7"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_11w0x"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_140x8"]
+
+[sub_resource type="Animation" id="Animation_140x8"]
+resource_name = "Main"
+length = 15.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RigidBody2D_Guard:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.8, 3.2, 6, 7.3, 7.45, 7.6, 7.7, 8.2, 10.69, 12, 13, 13.5, 14),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(802, 0), Vector2(802, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, -66), Vector2(0, 0), Vector2(0, 0), Vector2(1247, 0), Vector2(1247, 0), Vector2(0, 0), Vector2(352, 0), Vector2(352, 0), Vector2(935, 0)]
+}
+tracks/1/type = "animation"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RigidBody2D_Guard/AnimationPlayer2")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": PackedStringArray("WeaponFloat"),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Scene2Controller")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 6, 6.1, 7.3, 7.7, 8.2, 9.2, 12, 13, 13.5, 13.6, 14, 14.75, 15),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"PlayGuardSfx"
+}, {
+"args": [],
+"method": &"StopBgm"
+}, {
+"args": [],
+"method": &"PlayGrassShakeSfx"
+}, {
+"args": [],
+"method": &"PlayFindSfx"
+}, {
+"args": [],
+"method": &"PlayRunSfx"
+}, {
+"args": [],
+"method": &"StopSfx"
+}, {
+"args": [],
+"method": &"PlayConfusedSfx"
+}, {
+"args": [],
+"method": &"PlayGuardSfx"
+}, {
+"args": [],
+"method": &"PlayGrassShake2Sfx"
+}, {
+"args": [],
+"method": &"StopSfx"
+}, {
+"args": [],
+"method": &"PlayRunSfx"
+}, {
+"args": [],
+"method": &"StopSfx"
+}, {
+"args": [],
+"method": &"PlayAttackSfx"
+}, {
+"args": [],
+"method": &"LoadNext"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Node2D_Decorations/Sprite2D_GrassMush:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(6.1, 6.2, 6.3, 13.0333, 13.1333, 13.2333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(766, 294), Vector2(730, 294), Vector2(766, 294), Vector2(766, 294), Vector2(730, 294), Vector2(766, 294)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Sprite2D_BlackBad:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(14.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Sprite2D_BlackBad:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(14.5, 14.75, 15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(765, 265), Vector2(765, -111), Vector2(408, 102)]
+}
+
+[sub_resource type="Animation" id="Animation_ew3m7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RigidBody2D_Guard:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite2D_BlackBad:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Sprite2D_BlackBad:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(765, 265)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ew3m7"]
+_data = {
+&"Main": SubResource("Animation_140x8"),
+&"RESET": SubResource("Animation_ew3m7")
+}
+
+[node name="Scene2" type="Node2D"]
+
+[node name="Node2D_Decorations" type="Node2D" parent="."]
+
+[node name="Sprite2D_Ground" type="Sprite2D" parent="Node2D_Decorations"]
+self_modulate = Color(0.0137915, 0.619601, 0.226817, 1)
+position = Vector2(192, 511.5)
+scale = Vector2(5258, 307)
+texture = SubResource("CanvasTexture_11w0x")
+
+[node name="Sprite2D_Castle" type="Sprite2D" parent="Node2D_Decorations"]
+self_modulate = Color(0.422371, 0.422371, 0.422371, 1)
+z_index = 1
+position = Vector2(-1509.94, -12.4375)
+scale = Vector2(1222.13, 741.125)
+texture = SubResource("CanvasTexture_140x8")
+
+[node name="Sprite2D_GrassMush" type="Sprite2D" parent="Node2D_Decorations"]
+self_modulate = Color(0.104068, 0.380381, 2.40654e-07, 1)
+position = Vector2(766, 294)
+scale = Vector2(0.492187, 0.492187)
+texture = ExtResource("1_11w0x")
+
+[node name="Node2D_Guard" type="Node2D" parent="."]
+position = Vector2(-704, 269)
+
+[node name="RigidBody2D_Guard" parent="Node2D_Guard" instance=ExtResource("1_4mrw7")]
+z_index = 2
+
+[node name="Sprite2D_Weapon" parent="Node2D_Guard/RigidBody2D_Guard/Sprite2D_Body" index="0"]
+position = Vector2(0.712, -0.616692)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Node2D_Guard")
+libraries = {
+&"": SubResource("AnimationLibrary_ew3m7")
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Scene2Controller" type="Node2D" parent="." node_paths=PackedStringArray("_animationPlayer")]
+script = ExtResource("3_140x8")
+_animationPlayer = NodePath("../AnimationPlayer")
+
+[node name="Sprite2D_BlackBad" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0, 0, 0, 1)
+z_index = 2
+position = Vector2(765, 265)
+scale = Vector2(0.753906, 0.753906)
+texture = ExtResource("4_ew3m7")
+
+[editable path="Node2D_Guard/RigidBody2D_Guard"]

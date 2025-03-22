@@ -1,4 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://ck128fmfo23bw"]
+[gd_scene load_steps=8 format=3 uid="uid://ck128fmfo23bw"]
+
+[ext_resource type="Animation" uid="uid://bcobvx2k1vyaa" path="res://Assets/Animations/Guard/WeaponFloat.res" id="1_boj2d"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_7sb35"]
 
@@ -7,42 +9,41 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7sb35"]
 size = Vector2(175.343, 174.378)
 
-[sub_resource type="Animation" id="Animation_7sb35"]
-resource_name = "WeaponFloat"
-length = 4.0
+[sub_resource type="Animation" id="Animation_v868q"]
+resource_name = "Guard"
+length = 6.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D_Body/Sprite2D_Weapon:position")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2, 4),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 2.5, 3.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0.712491, -1.04973), Vector2(0.712, -0.197), Vector2(0.712, -1.05)]
+"values": [Vector2(0, 0), Vector2(500, 0), Vector2(500, 0), Vector2(0, 0)]
 }
-
-[sub_resource type="Animation" id="Animation_t6tag"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D_Body/Sprite2D_Weapon:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(127.497, -51.1861)]
+tracks/1/type = "animation"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer2")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": PackedStringArray("WeaponFloat"),
+"times": PackedFloat32Array(0)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kfiem"]
 _data = {
-&"RESET": SubResource("Animation_t6tag"),
-&"WeaponFloat": SubResource("Animation_7sb35")
+&"Guard": SubResource("Animation_v868q")
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_boa06"]
+_data = {
+&"WeaponFloat": ExtResource("1_boj2d")
 }
 
 [node name="RigidBody2D_Guard" type="RigidBody2D"]
@@ -55,7 +56,7 @@ texture = SubResource("CanvasTexture_7sb35")
 
 [node name="Sprite2D_Weapon" type="Sprite2D" parent="Sprite2D_Body"]
 self_modulate = Color(0.571034, 0.0199092, 0, 1)
-position = Vector2(127.497, -51.1861)
+position = Vector2(0.712491, -1.04973)
 scale = Vector2(0.137155, 1.23166)
 texture = SubResource("CanvasTexture_t6tag")
 
@@ -66,5 +67,10 @@ shape = SubResource("RectangleShape2D_7sb35")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_kfiem")
+}
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_boa06")
 }
 autoplay = "WeaponFloat"

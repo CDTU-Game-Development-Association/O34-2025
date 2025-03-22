@@ -6,4 +6,5 @@ public partial class AudioNode : Node
 {
     [Export] public AudioStreamPlayer BgmPlayer { get; private set; }
     [Export] public AudioStreamPlayer SfxPlayer { get; private set; }
+    [Export] public AudioStreamPlayer EnvironmentPlayer { get; private set; }
 }

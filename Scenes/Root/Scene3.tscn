@@ -1,0 +1,254 @@
+[gd_scene load_steps=12 format=3 uid="uid://cymse3742r3v4"]
+
+[ext_resource type="Script" uid="uid://cm05mwo5vvnke" path="res://Scripts/Scene3/Scene3Controller.cs" id="1_exxgy"]
+[ext_resource type="Texture2D" uid="uid://6uelg275ued7" path="res://Assets/Art/Sprites/Triangle.png" id="2_kculf"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_8fae0"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_exxgy"]
+
+[sub_resource type="Animation" id="Animation_exxgy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_8fae0"]
+resource_name = "Rotate"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kculf"]
+_data = {
+&"RESET": SubResource("Animation_exxgy"),
+&"Rotate": SubResource("Animation_8fae0")
+}
+
+[sub_resource type="Animation" id="Animation_kculf"]
+resource_name = "Main"
+length = 10.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5, 8.3, 10, 10.1, 10.2, 10.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1810, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, -200), Vector2(-253, -200), Vector2(253, -200), Vector2(0, -200)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D_BlackBad:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5, 7, 7.5, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2636, 293), Vector2(764, 293), Vector2(712, 244), Vector2(321, -98), Vector2(712, 288)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Scene3Controller")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4, 5, 5.2, 7, 10, 10.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"PlaySlowWalkSfx"
+}, {
+"args": [],
+"method": &"StopSfx"
+}, {
+"args": [],
+"method": &"PlayBadSmile"
+}, {
+"args": [],
+"method": &"PlayAttackSfx"
+}, {
+"args": [],
+"method": &"PlayExplosionSfx"
+}, {
+"args": [],
+"method": &"LoadNext"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D_BlackBad:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 5, 7, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, -0.851721, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Camera2D:zoom")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(8.3, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.11, 1.11)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("WorldCore/Sprite2D:self_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 9.9, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_h88o5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1810, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D_BlackBad:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2636, 293)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D_BlackBad:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera2D:zoom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("WorldCore/Sprite2D:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h88o5"]
+_data = {
+&"Main": SubResource("Animation_kculf"),
+&"RESET": SubResource("Animation_h88o5")
+}
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_kculf"]
+
+[node name="Scene3" type="Node2D"]
+
+[node name="Sprite2D_Wall" type="Sprite2D" parent="."]
+self_modulate = Color(0.661709, 0.490415, 0.182552, 1)
+scale = Vector2(6000, 3341.5)
+texture = SubResource("CanvasTexture_8fae0")
+
+[node name="WorldCore" type="Node2D" parent="."]
+rotation = 6.28319
+
+[node name="Sprite2D" type="Sprite2D" parent="WorldCore"]
+position = Vector2(0, -200)
+scale = Vector2(400, 400)
+texture = SubResource("CanvasTexture_exxgy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WorldCore/Sprite2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_kculf")
+}
+autoplay = "Rotate"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_h88o5")
+}
+
+[node name="Scene3Controller" type="Node2D" parent="." node_paths=PackedStringArray("_animationPlayer")]
+script = ExtResource("1_exxgy")
+_animationPlayer = NodePath("../AnimationPlayer")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1810, 0)
+
+[node name="Sprite2D_Ground" type="Sprite2D" parent="."]
+modulate = Color(0.537011, 0.537011, 0.537011, 1)
+position = Vector2(0, 628)
+scale = Vector2(6943.75, 408.5)
+texture = SubResource("CanvasTexture_kculf")
+
+[node name="Sprite2D_BlackBad" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(2636, 293)
+texture = ExtResource("2_kculf")

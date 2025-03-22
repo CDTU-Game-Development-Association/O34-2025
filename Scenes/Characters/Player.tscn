@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://5421cdw4u05n"]
+
+[ext_resource type="Script" uid="uid://dexescjmiasdu" path="res://Scripts/Player/Player.cs" id="1_ft8w5"]
+[ext_resource type="Texture2D" uid="uid://6uelg275ued7" path="res://Assets/Art/Sprites/Triangle.png" id="1_s0eop"]
+
+[node name="CharacterBody2D_Player" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_ft8w5")
+speed = 50000.0
+jumpSpeed = -600.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.357422, 0.357422)
+texture = ExtResource("1_s0eop")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-45, 45, 44, 45, 0, -32)

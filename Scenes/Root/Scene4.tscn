@@ -1,0 +1,191 @@
+[gd_scene load_steps=16 format=3 uid="uid://cx66lg7ynekyl"]
+
+[ext_resource type="Script" uid="uid://dqc5kxlrs8qm7" path="res://Scripts/Scene4/Scene4Controller.cs" id="1_7ow8p"]
+[ext_resource type="Script" uid="uid://cd35x1kdwu5rv" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_i7t6i"]
+[ext_resource type="PackedScene" uid="uid://g2qic0eoa40i" path="res://Scenes/Characters/Father.tscn" id="3_04ctw"]
+[ext_resource type="Script" uid="uid://bhxpxbxq12cc5" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="3_nas5i"]
+[ext_resource type="PackedScene" uid="uid://5421cdw4u05n" path="res://Scenes/Characters/Player.tscn" id="3_vd0h8"]
+[ext_resource type="PackedScene" uid="uid://bmo1xcfy1sh2a" path="res://Scenes/Characters/Mother.tscn" id="4_bu8bv"]
+[ext_resource type="Script" uid="uid://b14xp05pw7b72" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_lxvs7"]
+
+[sub_resource type="Animation" id="Animation_7ow8p"]
+resource_name = "Main"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.4, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scene4Controller")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"PlayBabyCrySfx"
+}, {
+"args": [],
+"method": &"PlayHappy2Bgm"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CharacterBody2D_Player")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [true],
+"method": &"SetAllowMove"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PhantomCamera2D:zoom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(4.5, 5.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.8, 0.8), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6disc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PhantomCamera2D:zoom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.8, 0.8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6disc"]
+_data = {
+&"Main": SubResource("Animation_7ow8p"),
+&"RESET": SubResource("Animation_6disc")
+}
+
+[sub_resource type="Resource" id="Resource_24lsk"]
+script = ExtResource("4_lxvs7")
+duration = 1.0
+transition = 0
+ease = 2
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_7ow8p"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vd0h8"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_04ctw"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bu8bv"]
+
+[node name="Scene4" type="Node2D"]
+
+[node name="Scene4Controller" type="Node2D" parent="." node_paths=PackedStringArray("_animationPlayer")]
+script = ExtResource("1_7ow8p")
+_animationPlayer = NodePath("../AnimationPlayer_Main")
+
+[node name="AnimationPlayer_Main" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6disc")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+physics_interpolation_mode = 1
+position = Vector2(0, -496)
+zoom = Vector2(0.8, 0.8)
+process_callback = 0
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("2_i7t6i")
+metadata/_custom_type_script = "uid://cd35x1kdwu5rv"
+
+[node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
+top_level = true
+position = Vector2(0, -496)
+script = ExtResource("3_nas5i")
+follow_mode = 2
+follow_target = NodePath("../CharacterBody2D_Player")
+zoom = Vector2(0.8, 0.8)
+tween_resource = SubResource("Resource_24lsk")
+follow_offset = Vector2(0, -400)
+metadata/_custom_type_script = "uid://bhxpxbxq12cc5"
+
+[node name="CharacterBody2D_Player" parent="." instance=ExtResource("3_vd0h8")]
+position = Vector2(0, -96)
+
+[node name="StaticBody2D_Father" parent="." instance=ExtResource("3_04ctw")]
+position = Vector2(-309, 300)
+
+[node name="StaticBody2D_Ground" type="StaticBody2D" parent="."]
+position = Vector2(0, 563)
+
+[node name="Sprite2D_Ground" type="Sprite2D" parent="StaticBody2D_Ground"]
+modulate = Color(0.984703, 0.695293, 0.602059, 1)
+scale = Vector2(6276, 349.5)
+texture = SubResource("CanvasTexture_7ow8p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D_Ground"]
+position = Vector2(0, -174)
+shape = SubResource("WorldBoundaryShape2D_vd0h8")
+debug_color = Color(0.874446, 0.000438952, 0.838265, 0.42)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D_Ground"]
+position = Vector2(-3066, -151)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_04ctw")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D_Ground"]
+position = Vector2(3128, -253)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_bu8bv")
+
+[node name="StaticBody2D_Mother" parent="." instance=ExtResource("4_bu8bv")]
+position = Vector2(310, 311)
