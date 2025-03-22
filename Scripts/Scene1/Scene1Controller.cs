@@ -61,10 +61,7 @@ public partial class Scene1Controller : Node2D
 
     private void ShowColor()
     {
-        foreach (Node2D core in _cores)
-        {
-            core.Modulate = Colors.White;
-        }
+        foreach (Node2D core in _cores) core.Modulate = Colors.White;
     }
 
     /// <summary>

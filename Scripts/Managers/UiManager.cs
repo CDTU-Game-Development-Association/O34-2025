@@ -1,6 +1,4 @@
-using Godot;
 using LumiVerseFramework.Base;
-using LumiVerseFramework.Common;
 using O342025.Scripts.UI;
 
 namespace O342025.Scripts.Managers;

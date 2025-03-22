@@ -8,11 +8,11 @@ namespace O342025.Scripts.Scene5;
 public partial class Scene5Controller : BaseSceneController
 {
     [Export] private AnimationPlayer _animationPlayer;
-    [Export] private Node2D _camera;
     [Export] private Node2D _black;
-    [Export] private Node2D _player;
-    [Export] private Node2D _mother;
+    [Export] private Node2D _camera;
     private bool _enableFollowMother;
+    [Export] private Node2D _mother;
+    [Export] private Node2D _player;
 
     public override void _Ready()
     {
@@ -37,7 +37,7 @@ public partial class Scene5Controller : BaseSceneController
     {
         _camera.Call("set_follow_target", _black);
     }
-    
+
     private void SetFollowPlayer()
     {
         _camera.Call("set_follow_target", _player);

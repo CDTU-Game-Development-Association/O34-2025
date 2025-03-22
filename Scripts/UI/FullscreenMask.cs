@@ -30,12 +30,12 @@ public partial class FullscreenMask : CanvasLayer
         // 初始化信号
         FadeInStart += () =>
         {
-            EventCenterManager.Instance.TriggerEvent<GameStartEvent>(
+            EventCenterManager.Instance.TriggerEvent(
                 new GameStartEvent { Ready = false });
         };
         FadeOutCompleted += () =>
         {
-            EventCenterManager.Instance.TriggerEvent<GameStartEvent>(
+            EventCenterManager.Instance.TriggerEvent(
                 new GameStartEvent { Ready = true });
         };
     }
@@ -58,7 +58,7 @@ public partial class FullscreenMask : CanvasLayer
         _animationTree.Set("parameters/conditions/FadeOut", true);
     }
 
-    private async void EmitFadeInCompleted()
+    private void EmitFadeInCompleted()
     {
         EmitSignal(SignalName.FadeInCompleted);
     }

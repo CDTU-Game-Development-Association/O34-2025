@@ -5,10 +5,14 @@ namespace O342025.Scripts.Scene7;
 
 public partial class LastPlatform : Area2D
 {
-    [Export] private BasicPlayer _player;
+    [Export] private AnimationPlayer _animationPlayer;
 
     private void OnBodyEntered(Node2D body)
     {
-        _player.AllowMove = false;
+        _animationPlayer.Stop();
+        (body as CharacterBody2D).Velocity = Vector2.Zero;
+        (body as BasicPlayer).AllowMove = false;
+        _animationPlayer.Play("Second");
+        QueueFree();
     }
 }

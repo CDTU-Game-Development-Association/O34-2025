@@ -8,9 +8,9 @@ namespace O342025.Scripts.Scene7;
 
 public partial class Scene7Controller : BaseSceneController
 {
-    [Export] private Color _clearColor;
     [Export] private AnimationPlayer _animationPlayer;
-    
+    [Export] private Color _clearColor;
+
     public override void _Ready()
     {
         base._Ready();
@@ -19,7 +19,7 @@ public partial class Scene7Controller : BaseSceneController
             "res://Assets/Audios/Bgm/Sad1.mp3");
         EventCenterManager.Instance.AddListener<GameStartEvent>(HandleStart);
     }
-    
+
     private void HandleStart(GameStartEvent e)
     {
         if (!e.Ready) return;

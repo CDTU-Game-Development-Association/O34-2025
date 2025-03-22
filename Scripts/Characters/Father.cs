@@ -10,7 +10,7 @@ public partial class Father : BasicPlayer
     {
         ReloadCurScene();
     }
-    
+
     private void ReloadCurScene()
     {
         SceneManager.Instance.LoadScene("res://Scenes/Root/Scene6.tscn");

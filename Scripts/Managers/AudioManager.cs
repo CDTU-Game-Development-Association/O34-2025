@@ -1,6 +1,5 @@
 using System;
 using Godot;
-using LumiVerseFramework.Async;
 using LumiVerseFramework.Base;
 using LumiVerseFramework.Common;
 using O342025.Scripts.Scene0;
@@ -10,9 +9,9 @@ namespace O342025.Scripts.Managers;
 public partial class AudioManager : Singleton<AudioManager>
 {
     private AudioNode _audioNode;
-    
+
     // TODO: 音频渐入渐出
-    
+
     public override void _Ready()
     {
         base._Ready();
@@ -63,6 +62,7 @@ public partial class AudioManager : Singleton<AudioManager>
                 $"音频资源加载失败，找不到音频:{audioPath}");
             return;
         }
+
         PlayAudio(type, audioSample);
     }
 
@@ -83,7 +83,7 @@ public partial class AudioManager : Singleton<AudioManager>
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);
         }
     }
-    
+
     public void StopAllAudio()
     {
         _audioNode.BgmPlayer.Stop();

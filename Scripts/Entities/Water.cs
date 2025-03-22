@@ -3,7 +3,7 @@ using O342025.Scripts.Managers;
 
 namespace O342025.Scripts.Entities;
 
-public partial class SmallBlack : Area2D
+public partial class Water : Area2D
 {
     [Export] private AnimationPlayer _ani;
     [Export] private string _curScene;
@@ -12,6 +12,5 @@ public partial class SmallBlack : Area2D
     {
         _ani.Stop();
         SceneManager.Instance.LoadScene(_curScene);
-        QueueFree();
     }
 }

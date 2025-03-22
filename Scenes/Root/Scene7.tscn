@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cb2hjdp84l8g2"]
+[gd_scene load_steps=26 format=3 uid="uid://cb2hjdp84l8g2"]
 
 [ext_resource type="Script" uid="uid://cywydo1x3e7at" path="res://Scripts/Scene7/Scene7Controller.cs" id="1_src5d"]
 [ext_resource type="AudioStream" uid="uid://btmrek6n5y1ih" path="res://Assets/Audios/Sfx/MotherBreathe.mp3" id="2_4827l"]
@@ -8,13 +8,14 @@
 [ext_resource type="Script" uid="uid://b14xp05pw7b72" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_6erui"]
 [ext_resource type="PackedScene" uid="uid://bmo1xcfy1sh2a" path="res://Scenes/Characters/Mother.tscn" id="5_vkmgt"]
 [ext_resource type="PackedScene" uid="uid://5421cdw4u05n" path="res://Scenes/Characters/Player.tscn" id="8_imq3n"]
-[ext_resource type="Script" uid="uid://d2xch0u8wrrf5" path="res://Scripts/Entities/SmallBlack.cs" id="9_tubs8"]
+[ext_resource type="Script" uid="uid://b1apgt1nl80ot" path="res://Scripts/Entities/Water.cs" id="9_p10og"]
 [ext_resource type="PackedScene" uid="uid://5o0e36ck8eof" path="res://Scenes/StaticBody2dPlatform.tscn" id="10_jmhyh"]
 [ext_resource type="Script" uid="uid://28up3vfw5w0b" path="res://Scripts/Scene7/LastPlatform.cs" id="11_e3o01"]
+[ext_resource type="Script" uid="uid://dtm52fwqkbm7q" path="res://Scripts/Scene7/MovingPlatform.cs" id="11_p10og"]
 
 [sub_resource type="Animation" id="Animation_h6mnq"]
 resource_name = "Main"
-length = 10.0
+length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -58,14 +59,71 @@ tracks/2/keys = {
 "method": &"SetAllowMove"
 }]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("StaticBody2D_CgWall/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
-[sub_resource type="Animation" id="Animation_imq3n"]
+[sub_resource type="Animation" id="Animation_8nf1o"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody2D_CgWall/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_e3o01"]
+resource_name = "Second"
+length = 4.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Platform/RigidBody2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"Move"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scene7Controller")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["res://Scenes/Root/Scene8.tscn"],
+"method": &"LoadNext"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_src5d"]
 _data = {
 &"Main": SubResource("Animation_h6mnq"),
-&"RESET": SubResource("Animation_imq3n")
+&"RESET": SubResource("Animation_8nf1o"),
+&"Second": SubResource("Animation_e3o01")
 }
 
 [sub_resource type="Resource" id="Resource_imq3n"]
@@ -81,17 +139,25 @@ size = Vector2(4711, 84)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tubs8"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jmhyh"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8nf1o"]
+size = Vector2(4130, 91)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jmhyh"]
-size = Vector2(157, 23)
+[sub_resource type="CanvasTexture" id="CanvasTexture_tubs8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p10og"]
+size = Vector2(303, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e3o01"]
+size = Vector2(214.5, 23)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8nf1o"]
 
 [node name="Scene7" type="Node2D"]
 
 [node name="Scene7Controller" type="Node2D" parent="." node_paths=PackedStringArray("_animationPlayer")]
 script = ExtResource("1_src5d")
-_clearColor = Color(0, 0, 0, 1)
 _animationPlayer = NodePath("../AnimationPlayer")
+_clearColor = Color(0, 0, 0, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -148,18 +214,19 @@ shape = SubResource("WorldBoundaryShape2D_tubs8")
 position = Vector2(3529.59, 595)
 collision_layer = 4
 collision_mask = 2
-script = ExtResource("9_tubs8")
-_curScene = "res://Scenes/Root/Scene7.tscn"
+script = ExtResource("9_p10og")
 _ani = NodePath("../AnimationPlayer")
+_curScene = "res://Scenes/Root/Scene7.tscn"
 
 [node name="Sprite2D_Water" type="Sprite2D" parent="Area2D_Water"]
 self_modulate = Color(0.0823848, 0.39009, 0.558859, 1)
-scale = Vector2(4642.81, 260.625)
+position = Vector2(4798.5, 520.344)
+scale = Vector2(14239.8, 1301.31)
 texture = SubResource("CanvasTexture_4827l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Water"]
-position = Vector2(0, -85)
-shape = SubResource("WorldBoundaryShape2D_jmhyh")
+position = Vector2(-272.59, -74.5)
+shape = SubResource("RectangleShape2D_8nf1o")
 
 [node name="Platform" type="Node2D" parent="."]
 
@@ -181,17 +248,37 @@ position = Vector2(3067, 355)
 [node name="StaticBody2D_Platform6" parent="Platform" instance=ExtResource("10_jmhyh")]
 position = Vector2(3457, 355)
 
-[node name="StaticBody2D_Platform7" parent="Platform" instance=ExtResource("10_jmhyh")]
-position = Vector2(3961, 355)
-
-[node name="Area2D" type="Area2D" parent="Platform" node_paths=PackedStringArray("_player")]
-position = Vector2(3982, 316)
+[node name="RigidBody2D" type="RigidBody2D" parent="Platform" node_paths=PackedStringArray("_player")]
+position = Vector2(4033, 355)
 collision_mask = 2
-script = ExtResource("11_e3o01")
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 3
+script = ExtResource("11_p10og")
 _player = NodePath("../../CharacterBody2D_Player")
 
+[node name="Sprite2D" type="Sprite2D" parent="Platform/RigidBody2D"]
+scale = Vector2(306, 37)
+texture = SubResource("CanvasTexture_tubs8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform/RigidBody2D"]
+shape = SubResource("RectangleShape2D_p10og")
+
+[node name="Area2D" type="Area2D" parent="Platform" node_paths=PackedStringArray("_animationPlayer")]
+position = Vector2(4033, 322)
+collision_mask = 2
+script = ExtResource("11_e3o01")
+_animationPlayer = NodePath("../../AnimationPlayer")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform/Area2D"]
-position = Vector2(-21.5, 1.5)
-shape = SubResource("RectangleShape2D_jmhyh")
+shape = SubResource("RectangleShape2D_e3o01")
+
+[node name="StaticBody2D_CgWall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D_CgWall"]
+position = Vector2(1186, 262)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_8nf1o")
 
 [connection signal="body_entered" from="Area2D_Water" to="Area2D_Water" method="OnBodyEntered"]
+[connection signal="body_entered" from="Platform/Area2D" to="Platform/Area2D" method="OnBodyEntered"]

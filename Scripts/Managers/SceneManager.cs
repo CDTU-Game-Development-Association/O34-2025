@@ -1,5 +1,4 @@
 using System;
-using System.Threading.Tasks;
 using Godot;
 using LumiVerseFramework.Async;
 using LumiVerseFramework.Base;
@@ -16,6 +15,8 @@ public partial class SceneManager : Singleton<SceneManager>
     private string _scenePath;
     private bool _stopBgm;
     private bool _stopEnvironment;
+    private float _timer;
+    private bool _enableTimer;
 
     public override void _Ready()
     {
@@ -24,13 +25,21 @@ public partial class SceneManager : Singleton<SceneManager>
             HandleLoadScene;
     }
 
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+        if (!_enableTimer) return;
+        _timer += (float)delta;
+    }
+
     /// <summary>
     /// 切换场景
     /// </summary>
     /// <param name="scenePath"></param>
     /// <param name="stopBgm"></param>
     /// <param name="stopEnvironment"></param>
-    public void LoadScene(string scenePath, bool stopBgm = false, bool stopEnvironment = true)
+    public void LoadScene(string scenePath, bool stopBgm = false,
+        bool stopEnvironment = true)
     {
         _scenePath = scenePath;
         _stopBgm = stopBgm;
@@ -43,25 +52,51 @@ public partial class SceneManager : Singleton<SceneManager>
         try
         {
             // 启动异步加载
-            ResourceLoader.LoadThreadedRequest(_scenePath);
-            while (ResourceLoader.LoadThreadedGetStatus(_scenePath) != ResourceLoader.ThreadLoadStatus.Loaded)
+            ResourceLoader.LoadThreadedRequest(_scenePath, "PackedScene", true);
+            _enableTimer = true;
+            while (ResourceLoader.LoadThreadedGetStatus(_scenePath) !=
+                   ResourceLoader.ThreadLoadStatus.Loaded)
+            {
+                // 加载失败，重新加载
+                if (ResourceLoader.LoadThreadedGetStatus(_scenePath) ==
+                    ResourceLoader.ThreadLoadStatus.Failed)
+                    ResourceLoader.LoadThreadedRequest(_scenePath,
+                        "PackedScene", true);
+                // 5s超时，重新加载
+                if (_timer > 5f)
+                {
+                    ResourceLoader.LoadThreadedRequest(_scenePath,
+                        "PackedScene", true);
+                    _timer = 0f;
+                    _enableTimer = true;
+                }
+
                 await WaitTask.WaitForNextFrame(this);
-        
+            }
+
+            _enableTimer = false;
+            
             // 加载完成，切换场景
-            var scene = ResourceLoader.LoadThreadedGet(_scenePath) as PackedScene;
+            var scene =
+                ResourceLoader.LoadThreadedGet(_scenePath) as PackedScene;
             if (_stopBgm)
                 AudioManager.Instance.StopAudio(AudioPlayerType.Bgm);
             if (_stopEnvironment)
                 AudioManager.Instance.StopAudio(AudioPlayerType.Environment);
             AudioManager.Instance.StopAudio(AudioPlayerType.Sfx);
-            GetTree().ChangeSceneToPacked(scene);
             EventCenterManager.Instance.RemoveAllListeners<GameStartEvent>();
+            GetTree().ChangeSceneToPacked(scene);
             UiManager.Instance.FadeOut();
         }
-        catch (Exception e)
+        catch (Exception)
         {
             YumihoshiDebug.Error<SceneManager>("场景切换", "切换场景失败");
-            GetTree().ChangeSceneToFile(_scenePath);
+            CallDeferred(nameof(Fallback));
         }
+    }
+
+    private void Fallback()
+    {
+        GetTree().ChangeSceneToFile(_scenePath);
     }
 }
