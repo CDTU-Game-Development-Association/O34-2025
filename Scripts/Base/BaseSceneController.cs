@@ -4,7 +4,7 @@ using O342025.Scripts.Managers;
 namespace O342025.Scripts.Base;
 
 public partial class BaseSceneController : Node2D
-{
+{ 
     private void PlayAudio(AudioPlayerType type, AudioStream audioStream)
     {
         AudioManager.Instance.PlayAudio(type, audioStream);

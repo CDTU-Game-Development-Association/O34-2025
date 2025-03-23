@@ -68,7 +68,7 @@ shape = SubResource("WorldBoundaryShape2D_2lm2v")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 1
-position = Vector2(1.4013e-45, -457)
+position = Vector2(0, -457)
 process_callback = 0
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]
@@ -86,6 +86,7 @@ follow_target = NodePath("../CharacterBody2D_Player")
 tween_resource = SubResource("Resource_m7ie2")
 follow_offset = Vector2(0, -400)
 follow_damping = true
+draw_limits = true
 metadata/_custom_type_script = "uid://bhxpxbxq12cc5"
 
 [node name="Scene9Controller" type="Node2D" parent="." node_paths=PackedStringArray("_animationPlayer")]

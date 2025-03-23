@@ -10,13 +10,13 @@ namespace O342025.Scripts.Managers;
 
 public partial class SceneManager : Singleton<SceneManager>
 {
+    private bool _enableTimer;
     private FullscreenMask _fullscreenMask;
 
     private string _scenePath;
     private bool _stopBgm;
     private bool _stopEnvironment;
     private float _timer;
-    private bool _enableTimer;
 
     public override void _Ready()
     {
@@ -75,7 +75,7 @@ public partial class SceneManager : Singleton<SceneManager>
             }
 
             _enableTimer = false;
-            
+
             // 加载完成，切换场景
             var scene =
                 ResourceLoader.LoadThreadedGet(_scenePath) as PackedScene;

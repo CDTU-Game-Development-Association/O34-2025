@@ -1,0 +1,145 @@
+[gd_scene load_steps=18 format=3 uid="uid://b464wnvfxd2sd"]
+
+[ext_resource type="Script" uid="uid://de5nrb0qdttfl" path="res://Scripts/Scene13/Scene13Controller.cs" id="1_u7fdd"]
+[ext_resource type="PackedScene" uid="uid://bqcqh4rny4ps5" path="res://Scenes/Characters/RectPlayer.tscn" id="2_d1g3f"]
+[ext_resource type="Script" uid="uid://cd35x1kdwu5rv" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_n0ytq"]
+[ext_resource type="Script" uid="uid://bhxpxbxq12cc5" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="4_sl2k4"]
+[ext_resource type="Script" uid="uid://b14xp05pw7b72" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_b2vh4"]
+[ext_resource type="Texture2D" uid="uid://dan7k5o0e7id2" path="res://Assets/Art/Sprites/Circle.png" id="6_sl2k4"]
+[ext_resource type="Script" uid="uid://vj28h5tcoufw" path="res://Scripts/Scene13/GreenCircle.cs" id="7_b2vh4"]
+[ext_resource type="Script" uid="uid://cpmpj63w80lk4" path="res://Scripts/Scene9/Heart.cs" id="8_urtx7"]
+
+[sub_resource type="Animation" id="Animation_u7fdd"]
+resource_name = "Main"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D_Player")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [true],
+"method": &"SetAllowMove"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d1g3f"]
+_data = {
+&"Main": SubResource("Animation_u7fdd")
+}
+
+[sub_resource type="Resource" id="Resource_urtx7"]
+script = ExtResource("5_b2vh4")
+duration = 1.0
+transition = 0
+ease = 2
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_n0ytq"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sl2k4"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_n0ytq"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_b2vh4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b2vh4"]
+radius = 31.0161
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ujay0"]
+radius = 21.0
+
+[node name="Scene13" type="Node2D"]
+
+[node name="AnimationPlayer_Main" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_d1g3f")
+}
+
+[node name="Scene13Controller" type="Node2D" parent="." node_paths=PackedStringArray("_animationPlayer")]
+script = ExtResource("1_u7fdd")
+_animationPlayer = NodePath("../AnimationPlayer_Main")
+_clearColor = Color(0, 0, 0, 1)
+
+[node name="CharacterBody2D_Player" parent="." instance=ExtResource("2_d1g3f")]
+position = Vector2(0, 76)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+physics_interpolation_mode = 1
+position = Vector2(0, -224)
+process_callback = 0
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("3_n0ytq")
+metadata/_custom_type_script = "uid://cd35x1kdwu5rv"
+
+[node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
+top_level = true
+position = Vector2(0, -224)
+script = ExtResource("4_sl2k4")
+follow_mode = 2
+follow_target = NodePath("../CharacterBody2D_Player")
+tween_resource = SubResource("Resource_urtx7")
+follow_offset = Vector2(0, -300)
+follow_damping = true
+draw_limits = true
+metadata/_custom_type_script = "uid://bhxpxbxq12cc5"
+
+[node name="Ground" type="StaticBody2D" parent="."]
+modulate = Color(0.709804, 0.721569, 0.541176, 1)
+position = Vector2(3123, 139)
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground"]
+position = Vector2(0, 23.5)
+scale = Vector2(8521, 53)
+texture = SubResource("CanvasTexture_n0ytq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+shape = SubResource("WorldBoundaryShape2D_sl2k4")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Ground"]
+position = Vector2(-3847, -139)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_n0ytq")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Ground"]
+position = Vector2(4177, -139)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_b2vh4")
+
+[node name="GreenCircle" type="RigidBody2D" parent="." node_paths=PackedStringArray("_player")]
+position = Vector2(322, 85)
+collision_mask = 3
+contact_monitor = true
+max_contacts_reported = 3
+script = ExtResource("7_b2vh4")
+_player = NodePath("../CharacterBody2D_Player")
+
+[node name="Sprite2D" type="Sprite2D" parent="GreenCircle"]
+self_modulate = Color(0.486275, 0.721569, 0.25098, 1)
+scale = Vector2(0.257813, 0.257813)
+texture = ExtResource("6_sl2k4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GreenCircle"]
+shape = SubResource("CircleShape2D_b2vh4")
+
+[node name="Area2D_Heart" type="Area2D" parent="."]
+position = Vector2(1393, 108)
+collision_mask = 2
+script = ExtResource("8_urtx7")
+_nextScenePath = "res://Scenes/Root/Scene14.tscn"
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D_Heart"]
+self_modulate = Color(0.893996, 0.39301, 0.185068, 1)
+scale = Vector2(0.179688, 0.179688)
+texture = ExtResource("6_sl2k4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Heart"]
+shape = SubResource("CircleShape2D_ujay0")
+
+[connection signal="body_entered" from="Area2D_Heart" to="Area2D_Heart" method="OnBodyEntered"]

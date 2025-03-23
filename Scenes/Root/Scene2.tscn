@@ -201,6 +201,9 @@ position = Vector2(-704, 269)
 [node name="RigidBody2D_Guard" parent="Node2D_Guard" instance=ExtResource("1_4mrw7")]
 z_index = 2
 
+[node name="Sprite2D_Weapon" parent="Node2D_Guard/RigidBody2D_Guard/Sprite2D_Body" index="0"]
+position = Vector2(0.712181, -0.512106)
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Node2D_Guard")
 libraries = {

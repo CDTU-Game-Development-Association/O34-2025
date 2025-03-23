@@ -4,10 +4,10 @@ namespace O342025.Scripts.Scene7;
 
 public partial class MovingPlatform : RigidBody2D
 {
-    [Export] private float _speed = 100f;
     [Export] private bool _move;
-    [Export] private Node2D _player;
     private Vector2 _offset;
+    [Export] private Node2D _player;
+    [Export] private float _speed = 100f;
 
     public override void _Process(double delta)
     {

@@ -351,8 +351,8 @@ position = Vector2(759, 299)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_iba6h")
-speed = 80000.0
 jumpSpeed = -700.0
+speed = 80000.0
 
 [node name="Sprite2D_Body" type="Sprite2D" parent="CharacterBody2D_Father"]
 self_modulate = Color(0, 0.572549, 0.560784, 1)
@@ -394,7 +394,7 @@ texture = ExtResource("7_3qh72")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 1
-position = Vector2(-147, -27.5)
+position = Vector2(759, 299)
 zoom = Vector2(0.5, 0.5)
 process_callback = 0
 
@@ -406,7 +406,7 @@ metadata/_custom_type_script = "uid://cd35x1kdwu5rv"
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_targets")]
 top_level = true
-position = Vector2(-147, -27.5)
+position = Vector2(759, 299)
 script = ExtResource("2_d0yyk")
 follow_mode = 3
 follow_targets = [NodePath("../CharacterBody2D_Father"), NodePath("../RigidBody2D_Black/Camera_Pos")]
@@ -416,6 +416,7 @@ follow_offset = Vector2(0, -100)
 follow_damping = true
 auto_zoom_min = 0.5
 auto_zoom_max = 0.8
+draw_limits = true
 metadata/_custom_type_script = "uid://bhxpxbxq12cc5"
 
 [node name="RigidBody2D_Black" type="RigidBody2D" parent="."]
@@ -453,57 +454,57 @@ libraries = {
 
 [node name="Area2D_SmallBlack" parent="Node2D_SmallBlack" node_paths=PackedStringArray("_ani") instance=ExtResource("11_y2imx")]
 position = Vector2(1710, 360)
-_curScene = "res://Scenes/Root/Scene6.tscn"
 _ani = NodePath("../../AnimationPlayer_Main")
+_curScene = "res://Scenes/Root/Scene6.tscn"
 
 [node name="Area2D_SmallBlack2" parent="Node2D_SmallBlack" node_paths=PackedStringArray("_ani") instance=ExtResource("11_y2imx")]
 position = Vector2(2677, 360)
-_curScene = "res://Scenes/Root/Scene6.tscn"
 _ani = NodePath("../../AnimationPlayer_Main")
+_curScene = "res://Scenes/Root/Scene6.tscn"
 
 [node name="Area2D_SmallBlack3" parent="Node2D_SmallBlack" node_paths=PackedStringArray("_ani") instance=ExtResource("11_y2imx")]
 position = Vector2(4072, 360)
-_curScene = "res://Scenes/Root/Scene6.tscn"
 _ani = NodePath("../../AnimationPlayer_Main")
+_curScene = "res://Scenes/Root/Scene6.tscn"
 
 [node name="Area2D_SmallBlack4" parent="Node2D_SmallBlack" node_paths=PackedStringArray("_ani") instance=ExtResource("11_y2imx")]
 position = Vector2(5736, 360)
-_curScene = "res://Scenes/Root/Scene6.tscn"
 _ani = NodePath("../../AnimationPlayer_Main")
+_curScene = "res://Scenes/Root/Scene6.tscn"
 
 [node name="Area2D_SmallBlack5" parent="Node2D_SmallBlack" node_paths=PackedStringArray("_ani") instance=ExtResource("11_y2imx")]
 position = Vector2(5845, 360)
-_curScene = "res://Scenes/Root/Scene6.tscn"
 _ani = NodePath("../../AnimationPlayer_Main")
+_curScene = "res://Scenes/Root/Scene6.tscn"
 
 [node name="Area2D_SmallBlack6" parent="Node2D_SmallBlack" node_paths=PackedStringArray("_ani") instance=ExtResource("11_y2imx")]
 position = Vector2(6945, 360)
-_curScene = "res://Scenes/Root/Scene6.tscn"
 _ani = NodePath("../../AnimationPlayer_Main")
+_curScene = "res://Scenes/Root/Scene6.tscn"
 
 [node name="Area2D_SmallBlack7" parent="Node2D_SmallBlack" node_paths=PackedStringArray("_ani") instance=ExtResource("11_y2imx")]
 position = Vector2(8534, 360)
-_curScene = "res://Scenes/Root/Scene6.tscn"
 _ani = NodePath("../../AnimationPlayer_Main")
+_curScene = "res://Scenes/Root/Scene6.tscn"
 
 [node name="Area2D_SmallBlack8" parent="Node2D_SmallBlack" node_paths=PackedStringArray("_ani") instance=ExtResource("11_y2imx")]
 position = Vector2(9307, 360)
-_curScene = "res://Scenes/Root/Scene6.tscn"
 _ani = NodePath("../../AnimationPlayer_Main")
+_curScene = "res://Scenes/Root/Scene6.tscn"
 
 [node name="Area2D_SmallBlack9" parent="Node2D_SmallBlack" node_paths=PackedStringArray("_ani") instance=ExtResource("11_y2imx")]
 position = Vector2(9540, 360)
-_curScene = "res://Scenes/Root/Scene6.tscn"
 _ani = NodePath("../../AnimationPlayer_Main")
+_curScene = "res://Scenes/Root/Scene6.tscn"
 
 [node name="Area2D_SmallBlack10" parent="Node2D_SmallBlack" node_paths=PackedStringArray("_ani") instance=ExtResource("11_y2imx")]
 position = Vector2(10946, 360)
-_curScene = "res://Scenes/Root/Scene6.tscn"
 _ani = NodePath("../../AnimationPlayer_Main")
+_curScene = "res://Scenes/Root/Scene6.tscn"
 
 [node name="Area2D_SmallBlack11" parent="Node2D_SmallBlack" node_paths=PackedStringArray("_ani") instance=ExtResource("11_y2imx")]
 position = Vector2(12589, 360)
-_curScene = "res://Scenes/Root/Scene6.tscn"
 _ani = NodePath("../../AnimationPlayer_Main")
+_curScene = "res://Scenes/Root/Scene6.tscn"
 
 [connection signal="body_entered" from="RigidBody2D_Black" to="CharacterBody2D_Father" method="OnBodyEntered"]

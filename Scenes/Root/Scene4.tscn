@@ -318,19 +318,19 @@ zoom = Vector2(0.8, 0.8)
 tween_resource = SubResource("Resource_24lsk")
 follow_offset = Vector2(0, -400)
 follow_damping = true
+draw_limits = true
 metadata/_custom_type_script = "uid://bhxpxbxq12cc5"
 
 [node name="CharacterBody2D_Player" parent="." instance=ExtResource("3_vd0h8")]
 position = Vector2(0, -118)
 
 [node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("_animationPlayer")]
-position = Vector2(-320, 134)
+position = Vector2(-305, 145)
 collision_mask = 2
 script = ExtResource("6_nas5i")
 _animationPlayer = NodePath("../AnimationPlayer_Main")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(24, 13)
 shape = SubResource("CircleShape2D_i7t6i")
 
 [node name="RBody2D_Father" parent="." instance=ExtResource("3_04ctw")]

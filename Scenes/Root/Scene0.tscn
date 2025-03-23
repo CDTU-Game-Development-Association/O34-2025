@@ -57,7 +57,6 @@ _data = {
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(61, 0)
-process_callback = 0
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]
 process_priority = 300
@@ -69,6 +68,7 @@ metadata/_custom_type_script = "uid://cd35x1kdwu5rv"
 position = Vector2(61, 0)
 script = ExtResource("2_2fmjx")
 tween_resource = SubResource("Resource_4w4kc")
+draw_limits = true
 metadata/_custom_type_script = "uid://bhxpxbxq12cc5"
 
 [node name="Node2D_Decorations" type="Node2D" parent="."]

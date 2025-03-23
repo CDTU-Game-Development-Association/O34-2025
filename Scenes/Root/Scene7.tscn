@@ -184,6 +184,7 @@ follow_target = NodePath("../CharacterBody2D_Player")
 tween_resource = SubResource("Resource_imq3n")
 follow_offset = Vector2(0, -100)
 follow_damping = true
+draw_limits = true
 metadata/_custom_type_script = "uid://bhxpxbxq12cc5"
 
 [node name="StaticBody2D_Mother" parent="." instance=ExtResource("5_vkmgt")]

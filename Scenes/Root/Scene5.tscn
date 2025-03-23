@@ -198,6 +198,18 @@ tracks/7/keys = {
 "update": 0,
 "values": [Vector2(0.8, 0.8), Vector2(0.5, 0.5), Vector2(0.5, 0.5), Vector2(0.8, 0.8)]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("RBody2D_Father/CollisionShape2D:disabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(6.2, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_m5so2"]
 length = 0.001
@@ -261,6 +273,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(0.8, 0.8)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RBody2D_Father/CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1frrs"]
 _data = {
@@ -294,6 +318,7 @@ zoom = Vector2(0.8, 0.8)
 tween_resource = SubResource("Resource_q3sa2")
 follow_offset = Vector2(0, -400)
 follow_damping = true
+draw_limits = true
 metadata/_custom_type_script = "uid://bhxpxbxq12cc5"
 
 [node name="CharacterBody2D_Player" parent="." instance=ExtResource("4_kpsed")]
@@ -347,13 +372,13 @@ libraries = {
 &"": SubResource("AnimationLibrary_1frrs")
 }
 
-[node name="Scene5Controller" type="Node2D" parent="." node_paths=PackedStringArray("_animationPlayer", "_camera", "_black", "_player", "_mother")]
+[node name="Scene5Controller" type="Node2D" parent="." node_paths=PackedStringArray("_animationPlayer", "_black", "_camera", "_mother", "_player")]
 script = ExtResource("7_1frrs")
 _animationPlayer = NodePath("../AnimationPlayer_Main")
-_camera = NodePath("../PhantomCamera2D")
 _black = NodePath("../Sprite2D_Black")
-_player = NodePath("../CharacterBody2D_Player")
+_camera = NodePath("../PhantomCamera2D")
 _mother = NodePath("../StaticBody2D_Mother")
+_player = NodePath("../CharacterBody2D_Player")
 
 [node name="Sprite2D_Black" type="Sprite2D" parent="."]
 visible = false

@@ -14,6 +14,8 @@ public partial class Scene9Controller : BaseSceneController
     {
         base._Ready();
         RenderingServer.SetDefaultClearColor(_clearColor);
+        AudioManager.Instance.PlayAudio(AudioPlayerType.Bgm,
+            "res://Assets/Audios/Bgm/SadWithHope.mp3");
         EventCenterManager.Instance.AddListener<GameStartEvent>(HandleStart);
     }
 
