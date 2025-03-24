@@ -45,4 +45,10 @@ public partial class EventCenterManager : Singleton<EventCenterManager>
         else
             _eventHandlers.Remove(type);
     }
+
+    public void RemoveAllListeners<T>()
+    {
+        if (_eventHandlers.ContainsKey(typeof(T)))
+            _eventHandlers.Remove(typeof(T));
+    }
 }

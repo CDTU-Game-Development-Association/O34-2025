@@ -1,0 +1,435 @@
+[gd_scene load_steps=30 format=3 uid="uid://cg88stjk5slkt"]
+
+[ext_resource type="AudioStream" uid="uid://3rhsd8yxhncv" path="res://Assets/Audios/Sfx/DoorOpen.mp3" id="1_ncogg"]
+[ext_resource type="PackedScene" uid="uid://bqcqh4rny4ps5" path="res://Scenes/Characters/RectPlayer.tscn" id="1_uord5"]
+[ext_resource type="AudioStream" uid="uid://doaop72jnfku3" path="res://Assets/Audios/Sfx/MachineStart.mp3" id="2_1qrlu"]
+[ext_resource type="Script" uid="uid://cd35x1kdwu5rv" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_fi8g4"]
+[ext_resource type="Script" uid="uid://csfmbot38haao" path="res://Scripts/Player/LastPlayerRb.cs" id="2_ouyl0"]
+[ext_resource type="Script" uid="uid://bhxpxbxq12cc5" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="3_a82ry"]
+[ext_resource type="AudioStream" uid="uid://b666jc327octf" path="res://Assets/Audios/Environment/MachineWorking.mp3" id="3_sli60"]
+[ext_resource type="Script" uid="uid://b14xp05pw7b72" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_bqcku"]
+[ext_resource type="Script" uid="uid://dwy17oi18kcti" path="res://Scripts/Scene14/Scene14Controller.cs" id="5_a82ry"]
+[ext_resource type="Texture2D" uid="uid://dan7k5o0e7id2" path="res://Assets/Art/Sprites/Circle.png" id="6_bqcku"]
+[ext_resource type="Script" uid="uid://ul7rclqhrxh3" path="res://Scripts/Scene14/KeySlot.cs" id="7_lxtkf"]
+
+[sub_resource type="Animation" id="Animation_man4x"]
+resource_name = "Main"
+length = 6.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PhantomCamera2D_Simple:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 2.3, 2.5, 6.1, 6.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.35, 1.35), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(4, 4), Vector2(4, 4), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PhantomCamera2D_Simple:follow_offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.2, 2.3, 6.1, 6.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -350), Vector2(0, -350), Vector2(0, 0), Vector2(0, 0), Vector2(0, -350)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CharacterBody2D_Player")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(6.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [true],
+"method": &"SetAllowMove"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Scene14Controller")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2.2, 4.2, 6.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"FollowKeyPlot"
+}, {
+"args": [],
+"method": &"FollowGreenCircle"
+}, {
+"args": [],
+"method": &"FollowPlayer"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_bqcku"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PhantomCamera2D_Simple:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.35, 1.35)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PhantomCamera2D_Simple:follow_offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -350)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WorldCore:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Ground:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lxtkf"]
+resource_name = "Second"
+length = 9.9
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D_Player")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"SetAllowMove"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scene14Controller")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 1, 1.1, 2.2, 2.7, 9.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [1, ExtResource("1_ncogg")],
+"method": &"PlayAudio"
+}, {
+"args": [],
+"method": &"FollowKeyPlot"
+}, {
+"args": [1, ExtResource("2_1qrlu")],
+"method": &"PlayAudio"
+}, {
+"args": [],
+"method": &"FollowCameraPos"
+}, {
+"args": [2, ExtResource("3_sli60")],
+"method": &"PlayAudio"
+}, {
+"args": [],
+"method": &"Rotate"
+}, {
+"args": [],
+"method": &"QuitGame"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PhantomCamera2D_Simple:zoom")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.2, 2.67, 9.03333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(0.2, 0.2)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PhantomCamera2D_Simple:follow_offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.2, 1.4, 1.6, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-100, 0), Vector2(100, 0), Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("WorldCore:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2.6, 2.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Ground:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(2.6, 2.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0.741385, 0.741385, 0.741385, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uord5"]
+_data = {
+&"Main": SubResource("Animation_man4x"),
+&"RESET": SubResource("Animation_bqcku"),
+&"Second": SubResource("Animation_lxtkf")
+}
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_fi8g4"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_a82ry"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bqcku"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ouyl0"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_a82ry"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_bqcku"]
+
+[sub_resource type="Animation" id="Animation_exxgy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_8fae0"]
+resource_name = "Rotate"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kculf"]
+_data = {
+&"RESET": SubResource("Animation_exxgy"),
+&"Rotate": SubResource("Animation_8fae0")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ouyl0"]
+radius = 34.0588
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lxtkf"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ncogg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bqcku"]
+radius = 25.02
+
+[sub_resource type="Resource" id="Resource_ouyl0"]
+script = ExtResource("4_bqcku")
+duration = 1.0
+transition = 0
+ease = 2
+
+[node name="Scene14" type="Node2D"]
+
+[node name="AnimationPlayer_Main" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_uord5")
+}
+
+[node name="CharacterBody2D_Player" parent="." instance=ExtResource("1_uord5")]
+position = Vector2(0, 89)
+script = ExtResource("2_ouyl0")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -261)
+zoom = Vector2(0.8, 0.8)
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("2_fi8g4")
+metadata/_custom_type_script = "uid://cd35x1kdwu5rv"
+
+[node name="Ground" type="StaticBody2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(17, 156)
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground"]
+position = Vector2(0, 23263.5)
+scale = Vector2(80093, 46533)
+texture = SubResource("CanvasTexture_fi8g4")
+
+[node name="CollisionGround" type="CollisionShape2D" parent="Ground"]
+position = Vector2(0, -3)
+shape = SubResource("WorldBoundaryShape2D_a82ry")
+
+[node name="CollisionLeftWall" type="CollisionShape2D" parent="Ground"]
+position = Vector2(-918, 0)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_bqcku")
+
+[node name="CollisionRightWall" type="CollisionShape2D" parent="Ground"]
+position = Vector2(900, 0)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_ouyl0")
+
+[node name="Bg" type="Sprite2D" parent="."]
+self_modulate = Color(0.531384, 0.389271, 0.135899, 1)
+z_index = -1
+position = Vector2(17.0001, -494)
+scale = Vector2(3976, 1300)
+texture = SubResource("CanvasTexture_a82ry")
+
+[node name="Scene14Controller" type="Node2D" parent="." node_paths=PackedStringArray("_ani", "_ani2", "_camera", "_player", "_keyPlot", "_greenCircle", "_cameraPos")]
+script = ExtResource("5_a82ry")
+_ani = NodePath("../AnimationPlayer_Main")
+_ani2 = NodePath("../WorldCore/Sprite2D/AnimationPlayer")
+_clearColor = Color(0.529412, 0.388235, 0.137255, 1)
+_camera = NodePath("../PhantomCamera2D_Simple")
+_player = NodePath("../CharacterBody2D_Player")
+_keyPlot = NodePath("../KeySlotPos")
+_greenCircle = NodePath("../GreenCircle")
+_cameraPos = NodePath("../CameraPos")
+
+[node name="WorldCore" type="Node2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(0, -482)
+rotation = 6.28319
+
+[node name="Sprite2D" type="Sprite2D" parent="WorldCore"]
+position = Vector2(0, -200)
+scale = Vector2(400, 400)
+texture = SubResource("CanvasTexture_bqcku")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WorldCore/Sprite2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_kculf")
+}
+
+[node name="GreenCircle" type="RigidBody2D" parent="."]
+position = Vector2(-338, 118)
+collision_layer = 8
+collision_mask = 19
+
+[node name="Sprite2D" type="Sprite2D" parent="GreenCircle"]
+modulate = Color(0.486275, 0.721569, 0.25098, 1)
+scale = Vector2(0.277, 0.277)
+texture = ExtResource("6_bqcku")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GreenCircle"]
+shape = SubResource("CircleShape2D_ouyl0")
+
+[node name="CircleWall" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 9
+
+[node name="CollisionShape2D_Left" type="CollisionShape2D" parent="CircleWall"]
+position = Vector2(-704, 0)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_lxtkf")
+
+[node name="CollisionShape2D_Right" type="CollisionShape2D" parent="CircleWall"]
+position = Vector2(723, 0)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_ncogg")
+
+[node name="CameraPos" type="Node2D" parent="."]
+position = Vector2(0, -261)
+
+[node name="KeySlotPos" type="Node2D" parent="."]
+position = Vector2(612, 118)
+
+[node name="KeySlot" type="Area2D" parent="KeySlotPos" node_paths=PackedStringArray("_ani")]
+collision_mask = 8
+script = ExtResource("7_lxtkf")
+_ani = NodePath("../../AnimationPlayer_Main")
+
+[node name="Sprite2D" type="Sprite2D" parent="KeySlotPos/KeySlot"]
+modulate = Color(0.0701369, 0.179853, 0.0539974, 1)
+scale = Vector2(0.277344, 0.277344)
+texture = ExtResource("6_bqcku")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KeySlotPos/KeySlot"]
+shape = SubResource("CircleShape2D_bqcku")
+
+[node name="PhantomCamera2D_Simple" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
+top_level = true
+position = Vector2(0, -261)
+script = ExtResource("3_a82ry")
+follow_mode = 2
+follow_target = NodePath("")
+zoom = Vector2(1.35, 1.35)
+tween_resource = SubResource("Resource_ouyl0")
+follow_offset = Vector2(0, -350)
+follow_damping = true
+draw_limits = true
+metadata/_custom_type_script = "uid://bhxpxbxq12cc5"
+
+[connection signal="body_entered" from="KeySlotPos/KeySlot" to="KeySlotPos/KeySlot" method="OnBodyEntered"]

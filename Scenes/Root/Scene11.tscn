@@ -1,0 +1,397 @@
+[gd_scene load_steps=28 format=3 uid="uid://bfcnevsd3kpbj"]
+
+[ext_resource type="Script" uid="uid://dx4en2c81qo1" path="res://Scripts/Scene11/Scene11Controller.cs" id="1_i4mkv"]
+[ext_resource type="Script" uid="uid://cd35x1kdwu5rv" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_vma5i"]
+[ext_resource type="Script" uid="uid://bhxpxbxq12cc5" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="2_1ddwv"]
+[ext_resource type="Script" uid="uid://b14xp05pw7b72" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_ofl8h"]
+[ext_resource type="PackedScene" uid="uid://bqcqh4rny4ps5" path="res://Scenes/Characters/RectPlayer.tscn" id="4_1ddwv"]
+[ext_resource type="AudioStream" uid="uid://dm3xuyc5yh46d" path="res://Assets/Audios/Sfx/Jump.mp3" id="5_wxrob"]
+[ext_resource type="Texture2D" uid="uid://dan7k5o0e7id2" path="res://Assets/Art/Sprites/Circle.png" id="7_yxjuw"]
+[ext_resource type="Script" uid="uid://fhv84mrpgoej" path="res://Scripts/Scene11/Area2dFather.cs" id="8_7j4y4"]
+
+[sub_resource type="Resource" id="Resource_p7uh3"]
+script = ExtResource("3_ofl8h")
+duration = 1.0
+transition = 0
+ease = 2
+
+[sub_resource type="Animation" id="Animation_pri35"]
+resource_name = "Main"
+length = 10.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D_Player")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [true],
+"method": &"SetAllowMove"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_0yfd8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D_GreenCircle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(125, 71)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody2D_Player:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1228, 47)]
+}
+
+[sub_resource type="Animation" id="Animation_ccd43"]
+resource_name = "Second"
+length = 7.7
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D_Player")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"SetAllowMove"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody2D_Player:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(219, 47)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D_GreenCircle:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.00833, 1.20833, 1.40833, 1.6, 1.8, 2, 2.2, 2.4, 2.60833, 3.2, 3.4, 3.6, 3.79167, 3.99167, 4.19167, 4.39167, 4.59167, 4.8, 5.35, 5.55, 5.75, 5.93333, 6.13333, 6.33333, 6.53333, 6.73333, 6.94167),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-32, 71), Vector2(125, 71), Vector2(136, -19), Vector2(219, -54), Vector2(312, -24), Vector2(349, 70), Vector2(312, -24), Vector2(219, -54), Vector2(136, -19), Vector2(125, 71), Vector2(125, 71), Vector2(136, -19), Vector2(219, -54), Vector2(312, -24), Vector2(349, 70), Vector2(312, -24), Vector2(219, -54), Vector2(136, -19), Vector2(125, 71), Vector2(125, 71), Vector2(136, -19), Vector2(219, -54), Vector2(312, -24), Vector2(349, 70), Vector2(312, -24), Vector2(219, -54), Vector2(136, -19), Vector2(125, 71)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Scene11Controller")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1, 1.8, 3.2, 3.9917, 5.35, 6.1333, 7.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [1, ExtResource("5_wxrob")],
+"method": &"PlayAudio"
+}, {
+"args": [1, ExtResource("5_wxrob")],
+"method": &"PlayAudio"
+}, {
+"args": [1, ExtResource("5_wxrob")],
+"method": &"PlayAudio"
+}, {
+"args": [1, ExtResource("5_wxrob")],
+"method": &"PlayAudio"
+}, {
+"args": [1, ExtResource("5_wxrob")],
+"method": &"PlayAudio"
+}, {
+"args": [1, ExtResource("5_wxrob")],
+"method": &"PlayAudio"
+}, {
+"args": ["res://Scenes/Root/Scene12.tscn"],
+"method": &"LoadNext"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1llwu"]
+_data = {
+&"Main": SubResource("Animation_pri35"),
+&"RESET": SubResource("Animation_0yfd8"),
+&"Second": SubResource("Animation_ccd43")
+}
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_pri35"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1llwu"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pri35"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_1llwu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p7uh3"]
+size = Vector2(90, 127)
+
+[sub_resource type="Animation" id="Animation_1llwu"]
+resource_name = "Help"
+length = 2.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D_GreenCircle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.4, 1.6, 1.8, 2, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-32, 71), Vector2(281, 71), Vector2(281, 27), Vector2(281, 70), Vector2(281, 19), Vector2(281, 71), Vector2(-32, 71), Vector2(-32, 26), Vector2(-32, 72), Vector2(-32, 24), Vector2(-32, 71)]
+}
+
+[sub_resource type="Animation" id="Animation_p7uh3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D_GreenCircle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-32, 71)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2pd0t"]
+_data = {
+&"Help": SubResource("Animation_1llwu"),
+&"RESET": SubResource("Animation_p7uh3")
+}
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_p7uh3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2pd0t"]
+size = Vector2(38, 38)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1llwu"]
+radius = 17.0
+
+[sub_resource type="Animation" id="Animation_v2qg7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D_Father:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_2pd0t"]
+resource_name = "Rotate"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D_Father:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v2qg7"]
+_data = {
+&"RESET": SubResource("Animation_v2qg7"),
+&"Rotate": SubResource("Animation_2pd0t")
+}
+
+[node name="Scene11" type="Node2D"]
+
+[node name="Scene11Controller" type="Node2D" parent="." node_paths=PackedStringArray("_animationPlayer")]
+script = ExtResource("1_i4mkv")
+_animationPlayer = NodePath("../AnimationPlayer_Main")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+physics_interpolation_mode = 1
+position = Vector2(-1228, -353)
+process_callback = 0
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("1_vma5i")
+metadata/_custom_type_script = "uid://cd35x1kdwu5rv"
+
+[node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
+top_level = true
+position = Vector2(-1228, -353)
+script = ExtResource("2_1ddwv")
+follow_mode = 2
+follow_target = NodePath("../CharacterBody2D_Player")
+tween_resource = SubResource("Resource_p7uh3")
+follow_offset = Vector2(0, -400)
+follow_damping = true
+draw_limits = true
+metadata/_custom_type_script = "uid://bhxpxbxq12cc5"
+
+[node name="AnimationPlayer_Main" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_1llwu")
+}
+
+[node name="CharacterBody2D_Player" parent="." instance=ExtResource("4_1ddwv")]
+position = Vector2(-1228, 47)
+
+[node name="StaticBody2D_Ground" type="StaticBody2D" parent="."]
+position = Vector2(0, 96)
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D_Ground"]
+self_modulate = Color(0.207512, 0.207512, 0.207512, 1)
+position = Vector2(0, 47.75)
+scale = Vector2(3080, 96.5)
+texture = SubResource("CanvasTexture_pri35")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D_Ground"]
+position = Vector2(0, 7)
+shape = SubResource("WorldBoundaryShape2D_1llwu")
+
+[node name="CollisionShape2DLeftWall" type="CollisionShape2D" parent="StaticBody2D_Ground"]
+position = Vector2(-1493, -96)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_pri35")
+
+[node name="CollisionShape2DRightWall" type="CollisionShape2D" parent="StaticBody2D_Ground"]
+position = Vector2(1440, -96)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_pri35")
+
+[node name="Stones" type="Node2D" parent="."]
+
+[node name="StaticBody2D_Stone" type="StaticBody2D" parent="Stones"]
+position = Vector2(-102, 31)
+
+[node name="Sprite2D" type="Sprite2D" parent="Stones/StaticBody2D_Stone"]
+self_modulate = Color(0.389287, 0.389287, 0.389286, 1)
+scale = Vector2(92.5, 128.5)
+texture = SubResource("CanvasTexture_1llwu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stones/StaticBody2D_Stone"]
+shape = SubResource("RectangleShape2D_p7uh3")
+
+[node name="StaticBody2D_Stone3" type="StaticBody2D" parent="Stones"]
+position = Vector2(358, 31)
+
+[node name="Sprite2D" type="Sprite2D" parent="Stones/StaticBody2D_Stone3"]
+self_modulate = Color(0.389287, 0.389287, 0.389286, 1)
+scale = Vector2(92.5, 128.5)
+texture = SubResource("CanvasTexture_1llwu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stones/StaticBody2D_Stone3"]
+shape = SubResource("RectangleShape2D_p7uh3")
+
+[node name="StaticBody2D_Stone4" type="StaticBody2D" parent="Stones"]
+position = Vector2(672, -95)
+
+[node name="Sprite2D" type="Sprite2D" parent="Stones/StaticBody2D_Stone4"]
+self_modulate = Color(0.389287, 0.389287, 0.389286, 1)
+scale = Vector2(92.5, 128.5)
+texture = SubResource("CanvasTexture_1llwu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stones/StaticBody2D_Stone4"]
+shape = SubResource("RectangleShape2D_p7uh3")
+
+[node name="StaticBody2D_Stone5" type="StaticBody2D" parent="Stones"]
+position = Vector2(-404, -95)
+
+[node name="Sprite2D" type="Sprite2D" parent="Stones/StaticBody2D_Stone5"]
+self_modulate = Color(0.389287, 0.389287, 0.389286, 1)
+scale = Vector2(92.5, 128.5)
+texture = SubResource("CanvasTexture_1llwu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stones/StaticBody2D_Stone5"]
+shape = SubResource("RectangleShape2D_p7uh3")
+
+[node name="Sprite2D_GreenCircle" type="Sprite2D" parent="."]
+self_modulate = Color(0.487655, 0.722339, 0.251827, 1)
+position = Vector2(-32, 71)
+scale = Vector2(0.1875, 0.1875)
+texture = ExtResource("7_yxjuw")
+
+[node name="AnimationPlayer_Circle" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_2pd0t")
+}
+autoplay = "Help"
+
+[node name="Area2D_Father" type="Area2D" parent="." node_paths=PackedStringArray("_circleAnimationPlayer", "_mainAnimationPlayer", "_stone")]
+position = Vector2(-404, -190)
+collision_mask = 2
+script = ExtResource("8_7j4y4")
+_circleAnimationPlayer = NodePath("../AnimationPlayer_Circle")
+_mainAnimationPlayer = NodePath("../AnimationPlayer_Main")
+_stone = NodePath("../Stones/StaticBody2D_Stone3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D_Father"]
+self_modulate = Color(0, 0.572549, 0.560784, 1)
+scale = Vector2(40, 40)
+texture = SubResource("CanvasTexture_p7uh3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Father"]
+shape = SubResource("RectangleShape2D_2pd0t")
+
+[node name="Area2D_Mother" type="Area2D" parent="." node_paths=PackedStringArray("_circleAnimationPlayer", "_mainAnimationPlayer", "_stone")]
+position = Vector2(672, -180)
+collision_mask = 2
+script = ExtResource("8_7j4y4")
+_circleAnimationPlayer = NodePath("../AnimationPlayer_Circle")
+_mainAnimationPlayer = NodePath("../AnimationPlayer_Main")
+_stone = NodePath("../Stones/StaticBody2D_Stone3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D_Mother"]
+self_modulate = Color(0.643137, 0.321569, 0.717647, 1)
+scale = Vector2(0.140625, 0.140625)
+texture = ExtResource("7_yxjuw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Mother"]
+shape = SubResource("CircleShape2D_1llwu")
+
+[node name="AnimationPlayer_Father" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_v2qg7")
+}
+autoplay = "Rotate"
+
+[connection signal="body_entered" from="Area2D_Father" to="Area2D_Father" method="OnBodyEntered"]
+[connection signal="body_entered" from="Area2D_Mother" to="Area2D_Mother" method="OnBodyEntered"]

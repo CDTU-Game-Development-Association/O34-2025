@@ -1,0 +1,267 @@
+[gd_scene load_steps=17 format=3 uid="uid://cwtsr44vu86a2"]
+
+[ext_resource type="Script" uid="uid://cd35x1kdwu5rv" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_he16o"]
+[ext_resource type="Script" uid="uid://bhxpxbxq12cc5" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="2_5mjue"]
+[ext_resource type="Script" uid="uid://b14xp05pw7b72" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_741oq"]
+[ext_resource type="PackedScene" uid="uid://bqcqh4rny4ps5" path="res://Scenes/Characters/RectPlayer.tscn" id="4_5mjue"]
+[ext_resource type="Script" uid="uid://uk1is2wht1sa" path="res://Scripts/Scene9/Scene9Controller.cs" id="5_5mjue"]
+[ext_resource type="Script" uid="uid://cpmpj63w80lk4" path="res://Scripts/Scene9/Heart.cs" id="6_0qxx2"]
+[ext_resource type="Texture2D" uid="uid://dan7k5o0e7id2" path="res://Assets/Art/Sprites/Circle.png" id="6_741oq"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_0u2tl"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2lm2v"]
+
+[sub_resource type="Resource" id="Resource_m7ie2"]
+script = ExtResource("3_741oq")
+duration = 1.0
+transition = 0
+ease = 2
+
+[sub_resource type="Animation" id="Animation_5mjue"]
+resource_name = "Main"
+length = 10.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D_Player")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [true],
+"method": &"SetAllowMove"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_741oq"]
+_data = {
+&"Main": SubResource("Animation_5mjue")
+}
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_5mjue"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_741oq"]
+size = Vector2(90, 127)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_741oq"]
+radius = 29.0689
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0qxx2"]
+
+[node name="Scene9" type="Node2D"]
+
+[node name="StaticBody2D_Ground" type="StaticBody2D" parent="."]
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D_Ground"]
+self_modulate = Color(0.207512, 0.207512, 0.207512, 1)
+position = Vector2(0, 47.75)
+scale = Vector2(3080, 96.5)
+texture = SubResource("CanvasTexture_0u2tl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D_Ground"]
+position = Vector2(0, 7)
+shape = SubResource("WorldBoundaryShape2D_2lm2v")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+physics_interpolation_mode = 1
+position = Vector2(0, -457)
+process_callback = 0
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("1_he16o")
+metadata/_custom_type_script = "uid://cd35x1kdwu5rv"
+
+[node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
+top_level = true
+position = Vector2(0, -457)
+script = ExtResource("2_5mjue")
+follow_mode = 2
+follow_target = NodePath("../CharacterBody2D_Player")
+tween_resource = SubResource("Resource_m7ie2")
+follow_offset = Vector2(0, -400)
+follow_damping = true
+draw_limits = true
+metadata/_custom_type_script = "uid://bhxpxbxq12cc5"
+
+[node name="Scene9Controller" type="Node2D" parent="." node_paths=PackedStringArray("_animationPlayer")]
+script = ExtResource("5_5mjue")
+_animationPlayer = NodePath("../AnimationPlayer_Main")
+_clearColor = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer_Main" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_741oq")
+}
+
+[node name="CharacterBody2D_Player" parent="." instance=ExtResource("4_5mjue")]
+position = Vector2(0, -57)
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="StaticBody2D_Stone" type="StaticBody2D" parent="Node2D"]
+position = Vector2(184, -64)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/StaticBody2D_Stone"]
+self_modulate = Color(0.389287, 0.389287, 0.389286, 1)
+scale = Vector2(92.5, 128.5)
+texture = SubResource("CanvasTexture_5mjue")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D_Stone"]
+shape = SubResource("RectangleShape2D_741oq")
+
+[node name="StaticBody2D_Stone2" type="StaticBody2D" parent="Node2D"]
+position = Vector2(409, -64)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/StaticBody2D_Stone2"]
+self_modulate = Color(0.389287, 0.389287, 0.389286, 1)
+scale = Vector2(92.5, 128.5)
+texture = SubResource("CanvasTexture_5mjue")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D_Stone2"]
+shape = SubResource("RectangleShape2D_741oq")
+
+[node name="StaticBody2D_Stone3" type="StaticBody2D" parent="Node2D"]
+position = Vector2(409, -190)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/StaticBody2D_Stone3"]
+self_modulate = Color(0.389287, 0.389287, 0.389286, 1)
+scale = Vector2(92.5, 128.5)
+texture = SubResource("CanvasTexture_5mjue")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D_Stone3"]
+shape = SubResource("RectangleShape2D_741oq")
+
+[node name="StaticBody2D_Stone4" type="StaticBody2D" parent="Node2D"]
+position = Vector2(616, -64)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/StaticBody2D_Stone4"]
+self_modulate = Color(0.389287, 0.389287, 0.389286, 1)
+scale = Vector2(92.5, 128.5)
+texture = SubResource("CanvasTexture_5mjue")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D_Stone4"]
+shape = SubResource("RectangleShape2D_741oq")
+
+[node name="StaticBody2D_Stone5" type="StaticBody2D" parent="Node2D"]
+position = Vector2(-184, -64)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/StaticBody2D_Stone5"]
+self_modulate = Color(0.389287, 0.389287, 0.389286, 1)
+scale = Vector2(92.5, 128.5)
+texture = SubResource("CanvasTexture_5mjue")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D_Stone5"]
+shape = SubResource("RectangleShape2D_741oq")
+
+[node name="StaticBody2D_Stone6" type="StaticBody2D" parent="Node2D"]
+position = Vector2(-393, -64)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/StaticBody2D_Stone6"]
+self_modulate = Color(0.389287, 0.389287, 0.389286, 1)
+scale = Vector2(92.5, 128.5)
+texture = SubResource("CanvasTexture_5mjue")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D_Stone6"]
+shape = SubResource("RectangleShape2D_741oq")
+
+[node name="StaticBody2D_Stone7" type="StaticBody2D" parent="Node2D"]
+position = Vector2(-393, -190)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/StaticBody2D_Stone7"]
+self_modulate = Color(0.389287, 0.389287, 0.389286, 1)
+scale = Vector2(92.5, 128.5)
+texture = SubResource("CanvasTexture_5mjue")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D_Stone7"]
+shape = SubResource("RectangleShape2D_741oq")
+
+[node name="StaticBody2D_Stone8" type="StaticBody2D" parent="Node2D"]
+position = Vector2(-617, -64)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/StaticBody2D_Stone8"]
+self_modulate = Color(0.389287, 0.389287, 0.389286, 1)
+scale = Vector2(92.5, 128.5)
+texture = SubResource("CanvasTexture_5mjue")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D_Stone8"]
+shape = SubResource("RectangleShape2D_741oq")
+
+[node name="StaticBody2D_Stone9" type="StaticBody2D" parent="Node2D"]
+position = Vector2(-817, -190)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/StaticBody2D_Stone9"]
+self_modulate = Color(0.389287, 0.389287, 0.389286, 1)
+scale = Vector2(92.5, 128.5)
+texture = SubResource("CanvasTexture_5mjue")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D_Stone9"]
+shape = SubResource("RectangleShape2D_741oq")
+
+[node name="StaticBody2D_Stone10" type="StaticBody2D" parent="Node2D"]
+position = Vector2(-961, -322)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/StaticBody2D_Stone10"]
+self_modulate = Color(0.389287, 0.389287, 0.389286, 1)
+scale = Vector2(92.5, 128.5)
+texture = SubResource("CanvasTexture_5mjue")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D_Stone10"]
+shape = SubResource("RectangleShape2D_741oq")
+
+[node name="StaticBody2D_Stone11" type="StaticBody2D" parent="Node2D"]
+position = Vector2(-740, -445)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/StaticBody2D_Stone11"]
+self_modulate = Color(0.389287, 0.389287, 0.389286, 1)
+scale = Vector2(92.5, 128.5)
+texture = SubResource("CanvasTexture_5mjue")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D_Stone11"]
+shape = SubResource("RectangleShape2D_741oq")
+
+[node name="StaticBody2D_Stone12" type="StaticBody2D" parent="Node2D"]
+position = Vector2(-542, -445)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/StaticBody2D_Stone12"]
+self_modulate = Color(0.389287, 0.389287, 0.389286, 1)
+scale = Vector2(92.5, 128.5)
+texture = SubResource("CanvasTexture_5mjue")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D_Stone12"]
+shape = SubResource("RectangleShape2D_741oq")
+
+[node name="Area2D_Heart" type="Area2D" parent="Node2D"]
+position = Vector2(-542, -550)
+collision_mask = 3
+script = ExtResource("6_0qxx2")
+_nextScenePath = "res://Scenes/Root/Scene10.tscn"
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/Area2D_Heart"]
+self_modulate = Color(0.513905, 0.511505, 0.913396, 1)
+scale = Vector2(0.242188, 0.242188)
+texture = ExtResource("6_741oq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D_Heart"]
+shape = SubResource("CircleShape2D_741oq")
+
+[node name="StaticBody2D_Wall" type="StaticBody2D" parent="Node2D"]
+position = Vector2(-1416, -107)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D_Wall"]
+shape = SubResource("WorldBoundaryShape2D_0qxx2")
+
+[node name="StaticBody2D_Wall2" type="StaticBody2D" parent="Node2D"]
+position = Vector2(1025, -107)
+rotation = -1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D_Wall2"]
+shape = SubResource("WorldBoundaryShape2D_0qxx2")
+
+[connection signal="body_entered" from="Node2D/Area2D_Heart" to="Node2D/Area2D_Heart" method="OnBodyEntered"]

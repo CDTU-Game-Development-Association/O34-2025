@@ -1,0 +1,390 @@
+[gd_scene load_steps=27 format=3 uid="uid://yqajc1ovbhqy"]
+
+[ext_resource type="Script" uid="uid://cd35x1kdwu5rv" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_xir7e"]
+[ext_resource type="Script" uid="uid://bhxpxbxq12cc5" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="2_1frrs"]
+[ext_resource type="Script" uid="uid://b14xp05pw7b72" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_sl2vk"]
+[ext_resource type="PackedScene" uid="uid://5421cdw4u05n" path="res://Scenes/Characters/Player.tscn" id="4_kpsed"]
+[ext_resource type="PackedScene" uid="uid://g2qic0eoa40i" path="res://Scenes/Characters/Father.tscn" id="5_m5so2"]
+[ext_resource type="PackedScene" uid="uid://bmo1xcfy1sh2a" path="res://Scenes/Characters/Mother.tscn" id="6_lisau"]
+[ext_resource type="Script" uid="uid://dv80y75hx0eqa" path="res://Scripts/Scene5/Scene5Controller.cs" id="7_1frrs"]
+[ext_resource type="AudioStream" uid="uid://bh56mfdxbbe3y" path="res://Assets/Audios/Sfx/CutFood.mp3" id="7_sl2vk"]
+[ext_resource type="AudioStream" uid="uid://dcij6gjcn306c" path="res://Assets/Audios/Environment/CookFood.mp3" id="8_kpsed"]
+[ext_resource type="AudioStream" uid="uid://bbvkvkbkh1mub" path="res://Assets/Audios/Sfx/Earthquake.mp3" id="9_m5so2"]
+[ext_resource type="AudioStream" uid="uid://b4fmfhg6gw7jd" path="res://Assets/Audios/Sfx/Confused.mp3" id="10_lisau"]
+[ext_resource type="AudioStream" uid="uid://nv0fw8b15fof" path="res://Assets/Audios/Sfx/OpenDoor.mp3" id="10_q3sa2"]
+[ext_resource type="AudioStream" uid="uid://ur2ifpao6t62" path="res://Assets/Audios/Sfx/Confused2.mp3" id="12_tkn0a"]
+[ext_resource type="AudioStream" uid="uid://c0f2l8gwph18b" path="res://Assets/Audios/Sfx/Confused3.mp3" id="13_1ni1d"]
+[ext_resource type="AudioStream" uid="uid://qdqj46hmgy80" path="res://Assets/Audios/Sfx/EarthquakeBig.mp3" id="13_mnfdy"]
+[ext_resource type="AudioStream" uid="uid://bfoykrwm7gsf5" path="res://Assets/Audios/Sfx/Scary.mp3" id="15_tv205"]
+
+[sub_resource type="Resource" id="Resource_q3sa2"]
+script = ExtResource("3_sl2vk")
+duration = 1.0
+transition = 0
+ease = 2
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_tkn0a"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mnfdy"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1ni1d"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tv205"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_sprm1"]
+
+[sub_resource type="Animation" id="Animation_xir7e"]
+resource_name = "Main"
+length = 29.0
+markers = [{
+"color": Color(1, 1, 1, 1),
+"name": &"Shake2",
+"time": 11.9863
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"Shake1",
+"time": 4.98
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"EnemyCome",
+"time": 21.0
+}]
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D_Player")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 21.9),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [true],
+"method": &"SetAllowMove"
+}, {
+"args": [false],
+"method": &"SetAllowMove"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scene5Controller")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.35, 5, 6.63333, 8.27, 10, 11.9, 11.95, 12, 13.6333, 17, 21, 21.3, 21.9, 23.0667, 27.6333, 29),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [1, ExtResource("7_sl2vk")],
+"method": &"PlayAudio"
+}, {
+"args": [2, ExtResource("8_kpsed")],
+"method": &"PlayAudio"
+}, {
+"args": [1, ExtResource("9_m5so2")],
+"method": &"PlayAudio"
+}, {
+"args": [1, ExtResource("10_q3sa2")],
+"method": &"PlayAudio"
+}, {
+"args": [1, ExtResource("10_lisau")],
+"method": &"PlayAudio"
+}, {
+"args": [1, ExtResource("7_sl2vk")],
+"method": &"PlayAudio"
+}, {
+"args": [],
+"method": &"StopBgm"
+}, {
+"args": [],
+"method": &"StopEnvironment"
+}, {
+"args": [1, ExtResource("9_m5so2")],
+"method": &"PlayAudio"
+}, {
+"args": [1, ExtResource("12_tkn0a")],
+"method": &"PlayAudio"
+}, {
+"args": [1, ExtResource("13_1ni1d")],
+"method": &"PlayAudio"
+}, {
+"args": [1, ExtResource("13_mnfdy")],
+"method": &"PlayAudio"
+}, {
+"args": [1, ExtResource("15_tv205")],
+"method": &"PlayAudio"
+}, {
+"args": [],
+"method": &"SetFollowBlack"
+}, {
+"args": [],
+"method": &"SetFollowPlayer"
+}, {
+"args": [],
+"method": &"SetPlayerPosOnMother"
+}, {
+"args": ["res://Scenes/Root/Scene6.tscn"],
+"method": &"LoadNext"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PhantomCamera2D:follow_offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 5, 5.2, 5.4, 12, 12.2, 12.4, 17, 17.2, 17.4, 17.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -400), Vector2(0, -400), Vector2(0, -350), Vector2(0, -400), Vector2(0, -400), Vector2(0, -350), Vector2(0, -400), Vector2(0, -400), Vector2(-50, -400), Vector2(50, -400), Vector2(0, -400)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("StaticBody2D_Mother:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(5, 5.2, 5.4, 12, 12.2, 12.4, 25.409, 25.6, 25.8, 26, 27.6333, 29),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(310, 311), Vector2(310, 225), Vector2(310, 311), Vector2(310, 311), Vector2(310, 238), Vector2(310, 311), Vector2(310, 311), Vector2(231, 311), Vector2(394, 311), Vector2(231, 311), Vector2(231, 311), Vector2(2785, 311)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RBody2D_Father:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(5, 5.2, 5.4, 6.2, 7, 9.6436, 10, 12, 12.2, 12.4, 22, 24.5, 24.7, 24.9, 26.579, 26.7, 26.9, 27.1, 27.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-309, 300), Vector2(-309, 218), Vector2(-309, 300), Vector2(-309, 300), Vector2(-1142, 300), Vector2(-1142, 300), Vector2(-282, 300), Vector2(-282, 300), Vector2(-282, 233), Vector2(-282, 300), Vector2(-282, 300), Vector2(-282, 300), Vector2(-282, 183), Vector2(-282, 300), Vector2(-282, 300), Vector2(-282, 229), Vector2(-282, 300), Vector2(-282, 229), Vector2(-282, 300)]
+}
+tracks/5/type = "animation"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RBody2D_Father/AnimationPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": PackedStringArray("HandLeft", "HandRight", "HandConfused"),
+"times": PackedFloat32Array(7.1, 8.36667, 13)
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite2D_Black:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 21),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("PhantomCamera2D:zoom")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(21.7667, 22.2667, 23.5, 23.9333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.8, 0.8), Vector2(0.5, 0.5), Vector2(0.5, 0.5), Vector2(0.8, 0.8)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("RBody2D_Father/CollisionShape2D:disabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(6.2, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_m5so2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PhantomCamera2D:follow_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -400)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody2D_Mother:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(310, 311)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RBody2D_Father:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-309, 300)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D_Black:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PhantomCamera2D:zoom")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.8, 0.8)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RBody2D_Father/CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1frrs"]
+_data = {
+&"Main": SubResource("Animation_xir7e"),
+&"RESET": SubResource("Animation_m5so2")
+}
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_1ni1d"]
+
+[node name="Scene5" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+physics_interpolation_mode = 1
+position = Vector2(2, -60)
+zoom = Vector2(0.8, 0.8)
+process_callback = 0
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("1_xir7e")
+metadata/_custom_type_script = "uid://cd35x1kdwu5rv"
+
+[node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
+top_level = true
+position = Vector2(2, -60)
+script = ExtResource("2_1frrs")
+follow_mode = 2
+follow_target = NodePath("../CharacterBody2D_Player")
+zoom = Vector2(0.8, 0.8)
+tween_resource = SubResource("Resource_q3sa2")
+follow_offset = Vector2(0, -400)
+follow_damping = true
+draw_limits = true
+metadata/_custom_type_script = "uid://bhxpxbxq12cc5"
+
+[node name="CharacterBody2D_Player" parent="." instance=ExtResource("4_kpsed")]
+position = Vector2(2, 340)
+
+[node name="RBody2D_Father" parent="." instance=ExtResource("5_m5so2")]
+position = Vector2(-309, 300)
+collision_mask = 2
+
+[node name="Sprite2D_Hand" parent="RBody2D_Father" index="2"]
+visible = true
+
+[node name="AnimationPlayer" parent="RBody2D_Father" index="3"]
+autoplay = ""
+
+[node name="StaticBody2D_Ground" type="StaticBody2D" parent="."]
+position = Vector2(0, 563)
+
+[node name="Sprite2D_Ground" type="Sprite2D" parent="StaticBody2D_Ground"]
+modulate = Color(0.650128, 0.650128, 0.650128, 1)
+scale = Vector2(6276, 349.5)
+texture = SubResource("CanvasTexture_tkn0a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D_Ground"]
+position = Vector2(0, -174)
+shape = SubResource("WorldBoundaryShape2D_mnfdy")
+debug_color = Color(0.874446, 0.000438952, 0.838265, 0.42)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D_Ground"]
+position = Vector2(-897, -151)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_1ni1d")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D_Ground"]
+position = Vector2(535, -253)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_tv205")
+
+[node name="StaticBody2D_Mother" parent="." instance=ExtResource("6_lisau")]
+position = Vector2(310, 311)
+
+[node name="Sprite2D_House" type="Sprite2D" parent="."]
+modulate = Color(0.984314, 0.694118, 0.603922, 1)
+z_index = -1
+position = Vector2(0, 106)
+scale = Vector2(1851, 570)
+texture = SubResource("CanvasTexture_sprm1")
+
+[node name="AnimationPlayer_Main" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_1frrs")
+}
+
+[node name="Scene5Controller" type="Node2D" parent="." node_paths=PackedStringArray("_animationPlayer", "_black", "_camera", "_mother", "_player")]
+script = ExtResource("7_1frrs")
+_animationPlayer = NodePath("../AnimationPlayer_Main")
+_black = NodePath("../Sprite2D_Black")
+_camera = NodePath("../PhantomCamera2D")
+_mother = NodePath("../StaticBody2D_Mother")
+_player = NodePath("../CharacterBody2D_Player")
+
+[node name="Sprite2D_Black" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-1455, -105)
+scale = Vector2(1000, 1000)
+texture = SubResource("CanvasTexture_1ni1d")
+
+[editable path="RBody2D_Father"]

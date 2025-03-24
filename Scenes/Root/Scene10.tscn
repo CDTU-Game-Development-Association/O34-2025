@@ -1,0 +1,189 @@
+[gd_scene load_steps=16 format=3 uid="uid://coklg8m4nowet"]
+
+[ext_resource type="Script" uid="uid://bi6a6ucec5h4q" path="res://Scripts/Scene10/Scene10Controller.cs" id="1_dj37v"]
+[ext_resource type="Script" uid="uid://cd35x1kdwu5rv" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_ojp77"]
+[ext_resource type="PackedScene" uid="uid://bqcqh4rny4ps5" path="res://Scenes/Characters/RectPlayer.tscn" id="2_pri35"]
+[ext_resource type="Script" uid="uid://b1apgt1nl80ot" path="res://Scripts/Entities/Water.cs" id="2_v2qg7"]
+[ext_resource type="Script" uid="uid://bhxpxbxq12cc5" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="3_pri35"]
+[ext_resource type="Script" uid="uid://b14xp05pw7b72" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_1llwu"]
+[ext_resource type="PackedScene" uid="uid://5o0e36ck8eof" path="res://Scenes/StaticBody2dPlatform.tscn" id="5_pri35"]
+[ext_resource type="Texture2D" uid="uid://dan7k5o0e7id2" path="res://Assets/Art/Sprites/Circle.png" id="6_1llwu"]
+[ext_resource type="Script" uid="uid://cpmpj63w80lk4" path="res://Scripts/Scene9/Heart.cs" id="6_p7uh3"]
+[ext_resource type="PackedScene" uid="uid://dvi08t1aqmrqy" path="res://Scenes/SmallBlack/Area2dSmallBlack.tscn" id="10_ccd43"]
+
+[sub_resource type="Animation" id="Animation_ojp77"]
+resource_name = "Main"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D_Player")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [true],
+"method": &"SetAllowMove"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pri35"]
+_data = {
+&"Main": SubResource("Animation_ojp77")
+}
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ccd43"]
+
+[sub_resource type="Resource" id="Resource_ojp77"]
+script = ExtResource("4_1llwu")
+duration = 1.0
+transition = 0
+ease = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2pd0t"]
+radius = 29.0689
+
+[node name="Scene10" type="Node2D"]
+
+[node name="CharacterBody2D_Player" parent="." instance=ExtResource("2_pri35")]
+
+[node name="AnimationPlayer_Main" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_pri35")
+}
+
+[node name="Area2D_Water" type="Area2D" parent="AnimationPlayer_Main" node_paths=PackedStringArray("_ani")]
+position = Vector2(80, 413)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("2_v2qg7")
+_ani = NodePath("..")
+_curScene = "res://Scenes/Root/Scene10.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimationPlayer_Main/Area2D_Water"]
+position = Vector2(-80, 59)
+shape = SubResource("WorldBoundaryShape2D_ccd43")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+physics_interpolation_mode = 1
+position = Vector2(0, -250)
+process_callback = 0
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("2_ojp77")
+metadata/_custom_type_script = "uid://cd35x1kdwu5rv"
+
+[node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
+top_level = true
+position = Vector2(0, -250)
+script = ExtResource("3_pri35")
+follow_mode = 2
+follow_target = NodePath("../CharacterBody2D_Player")
+tween_resource = SubResource("Resource_ojp77")
+follow_offset = Vector2(0, -250)
+follow_damping = true
+draw_limits = true
+metadata/_custom_type_script = "uid://bhxpxbxq12cc5"
+
+[node name="Platforms" type="Node2D" parent="."]
+modulate = Color(0.601223, 0.601223, 0.601223, 1)
+
+[node name="StaticBody2D_Platform" parent="Platforms" instance=ExtResource("5_pri35")]
+position = Vector2(0, 103)
+
+[node name="StaticBody2D_Platform2" parent="Platforms" instance=ExtResource("5_pri35")]
+position = Vector2(320, -26)
+
+[node name="StaticBody2D_Platform3" parent="Platforms" instance=ExtResource("5_pri35")]
+position = Vector2(50, -167)
+
+[node name="StaticBody2D_Platform4" parent="Platforms" instance=ExtResource("5_pri35")]
+position = Vector2(-230, -292)
+
+[node name="StaticBody2D_Platform5" parent="Platforms" instance=ExtResource("5_pri35")]
+position = Vector2(-544, -167)
+
+[node name="StaticBody2D_Platform6" parent="Platforms" instance=ExtResource("5_pri35")]
+position = Vector2(240, -400)
+
+[node name="StaticBody2D_Platform7" parent="Platforms" instance=ExtResource("5_pri35")]
+position = Vector2(-196, -582)
+
+[node name="StaticBody2D_Platform8" parent="Platforms" instance=ExtResource("5_pri35")]
+position = Vector2(130, -689)
+
+[node name="StaticBody2D_Platform9" parent="Platforms" instance=ExtResource("5_pri35")]
+position = Vector2(452, -761)
+
+[node name="StaticBody2D_Platform10" parent="Platforms" instance=ExtResource("5_pri35")]
+position = Vector2(-740, -723)
+
+[node name="StaticBody2D_Platform11" parent="Platforms" instance=ExtResource("5_pri35")]
+position = Vector2(-359, -902)
+
+[node name="StaticBody2D_Platform12" parent="Platforms" instance=ExtResource("5_pri35")]
+position = Vector2(-30, -1010)
+
+[node name="StaticBody2D_Platform16" parent="Platforms" instance=ExtResource("5_pri35")]
+position = Vector2(-214, -1155)
+
+[node name="StaticBody2D_Platform13" parent="Platforms" instance=ExtResource("5_pri35")]
+position = Vector2(913, -938)
+
+[node name="StaticBody2D_Platform14" parent="Platforms" instance=ExtResource("5_pri35")]
+position = Vector2(578, -1156)
+
+[node name="StaticBody2D_Platform15" parent="Platforms" instance=ExtResource("5_pri35")]
+position = Vector2(210, -1282)
+
+[node name="Area2D_Heart" type="Area2D" parent="."]
+position = Vector2(210, -1340)
+collision_mask = 3
+script = ExtResource("6_p7uh3")
+_nextScenePath = "res://Scenes/Root/Scene11.tscn"
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D_Heart"]
+self_modulate = Color(0.893996, 0.39301, 0.185068, 1)
+scale = Vector2(0.242188, 0.242188)
+texture = ExtResource("6_1llwu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Heart"]
+shape = SubResource("CircleShape2D_2pd0t")
+
+[node name="Scene10Controller" type="Node2D" parent="." node_paths=PackedStringArray("_animationPlayer")]
+script = ExtResource("1_dj37v")
+_animationPlayer = NodePath("../AnimationPlayer_Main")
+_clearColor = Color(0.215686, 0.215686, 0.215686, 1)
+
+[node name="SmallBlack" type="Node2D" parent="."]
+
+[node name="Area2D_SmallBlack" parent="SmallBlack" node_paths=PackedStringArray("_ani") instance=ExtResource("10_ccd43")]
+position = Vector2(-544, -211)
+_ani = NodePath("../../AnimationPlayer_Main")
+_curScene = "res://Scenes/Root/Scene10.tscn"
+
+[node name="CollisionShape2D" parent="SmallBlack/Area2D_SmallBlack" index="0"]
+position = Vector2(0, 7)
+
+[node name="Sprite2D" parent="SmallBlack/Area2D_SmallBlack" index="1"]
+scale = Vector2(0.195313, 0.195313)
+
+[node name="Area2D_SmallBlack2" parent="SmallBlack" node_paths=PackedStringArray("_ani") instance=ExtResource("10_ccd43")]
+position = Vector2(913, -985)
+_ani = NodePath("../../AnimationPlayer_Main")
+_curScene = "res://Scenes/Root/Scene10.tscn"
+
+[node name="CollisionShape2D" parent="SmallBlack/Area2D_SmallBlack2" index="0"]
+position = Vector2(0, 7)
+
+[node name="Sprite2D" parent="SmallBlack/Area2D_SmallBlack2" index="1"]
+scale = Vector2(0.195313, 0.195313)
+
+[connection signal="body_entered" from="AnimationPlayer_Main/Area2D_Water" to="AnimationPlayer_Main/Area2D_Water" method="OnBodyEntered"]
+[connection signal="body_entered" from="Area2D_Heart" to="Area2D_Heart" method="OnBodyEntered"]
+
+[editable path="SmallBlack/Area2D_SmallBlack"]
+[editable path="SmallBlack/Area2D_SmallBlack2"]

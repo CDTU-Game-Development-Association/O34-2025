@@ -1,0 +1,149 @@
+[gd_scene load_steps=14 format=3 uid="uid://bpwihydar08uc"]
+
+[ext_resource type="Script" uid="uid://ckqmril7r5eii" path="res://Scripts/UI/FullscreenMask.cs" id="1_gw3y0"]
+
+[sub_resource type="Animation" id="Animation_jfr0s"]
+resource_name = "FadeIn"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"EmitFadeInStart"
+}, {
+"args": [],
+"method": &"EmitFadeInCompleted"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_aqyya"]
+resource_name = "FadeOut"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"EmitFadeOutStart"
+}, {
+"args": [],
+"method": &"EmitFadeOutCompleted"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_gw3y0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gw3y0"]
+_data = {
+&"FadeIn": SubResource("Animation_jfr0s"),
+&"FadeOut": SubResource("Animation_aqyya"),
+&"RESET": SubResource("Animation_gw3y0")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aqyya"]
+animation = &"FadeIn"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gw3y0"]
+animation = &"FadeOut"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jfr0s"]
+animation = &"RESET"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u1edi"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_444ku"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3wpev"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"FadeIn"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_drgy3"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"FadeOut"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_aqyya"]
+states/FadeIn/node = SubResource("AnimationNodeAnimation_aqyya")
+states/FadeIn/position = Vector2(638.667, 123.333)
+states/FadeOut/node = SubResource("AnimationNodeAnimation_gw3y0")
+states/FadeOut/position = Vector2(455.333, 115.333)
+states/RESET/node = SubResource("AnimationNodeAnimation_jfr0s")
+states/RESET/position = Vector2(331.333, 63.3333)
+transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_u1edi"), "RESET", "FadeOut", SubResource("AnimationNodeStateMachineTransition_444ku"), "FadeOut", "FadeIn", SubResource("AnimationNodeStateMachineTransition_3wpev"), "FadeIn", "FadeOut", SubResource("AnimationNodeStateMachineTransition_drgy3")]
+
+[node name="CanvasLayer_ScreenMask" type="CanvasLayer" node_paths=PackedStringArray("_animationTree") groups=["FullScreenMask"]]
+layer = 99
+script = ExtResource("1_gw3y0")
+_animationTree = NodePath("FullScreenMask/AnimationTree")
+
+[node name="FullScreenMask" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FullScreenMask"]
+libraries = {
+&"": SubResource("AnimationLibrary_gw3y0")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="FullScreenMask"]
+tree_root = SubResource("AnimationNodeStateMachine_aqyya")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/FadeIn = false
+parameters/conditions/FadeOut = false
